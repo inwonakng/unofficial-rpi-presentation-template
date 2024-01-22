@@ -1,0 +1,322 @@
+\documentclass[
+	11pt, % Set the default font size, options include: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
+	%t, % Uncomment to vertically align all slide content to the top of the slide, rather than the default centered
+	aspectratio=169, % Uncomment to set the aspect ratio to a 16:9 ratio which matches the aspect ratio of 1080p and 4K screens and projectors
+  % table,
+]{beamer}
+
+\graphicspath{{figures/}{./}} % Specifies where to look for included images (trailing slash required)
+
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule for better rules in tables
+
+\usetheme{rpi}
+
+%----------------------------------------------------------------------------------------
+% PRESENTATION INFORMATION
+%----------------------------------------------------------------------------------------
+
+% \title[A Short Title for Your Slides]{A Very Long and Multi-Lined Full Presentation Title That You Probably Shouldn't Use Because Titles Should not be This Long, but I Will Do It For Debugging} 
+\title[A Short Title for Your Slides]{Unofficial beamer presentation template for RPI} 
+
+\subtitle{Optional Subtitle} % Presentation subtitle, remove this command if a subtitle isn't required
+
+\author[]{Inwon Kang \and StackOverflow} % Presenter name(s), the optional parameter can contain a shortened version to appear on the bottom of every slide, while the main parameter will appear on the title slide
+
+\institute[RPI]{Department of Computer Science} % Your institution, the optional parameter can be used for the institution shorthand and will appear on the bottom of every slide after author names, while the required parameter is used on the title slide and can include your email address or additional information on separate lines
+
+\date[\today]{\today} % Presentation date or conference/meeting name, the optional parameter can contain a shortened version to appear on the bottom of every slide, while the required parameter value is output to the title slide
+
+% \AtBeginSection[]{%
+%   \begin{frame}<beamer>
+%     \frametitle{Outline}
+%     \tableofcontents[sectionstyle=show/hide,subsectionstyle=hide/show/hide]
+%   \end{frame}
+%   \addtocounter{framenumber}{-1}% If you don't want them to affect the slide number
+% }
+
+% NOTE: Comment this out if you don't want it
+\AtBeginSection{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \begin{columns}[t]
+      \begin{column}{.5\textwidth}
+        \tableofcontents[
+          currentsection,
+          % sectionstyle=show/hide,
+          subsectionstyle=hide/show/hide,
+          sections={-4},
+        ]
+      \end{column}
+      \begin{column}{.5\textwidth}
+        \tableofcontents[
+          currentsection,
+          % sectionstyle=show/hide,
+          subsectionstyle=hide/show/hide,
+          sections={5-},
+        ]
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \addtocounter{framenumber}{-1}% If you don't want them to affect the slide number
+}
+
+% NOTE: Comment this out if you don't want it
+\AtBeginSubsection[]{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \begin{columns}[t]
+      \begin{column}{.5\textwidth}
+        \tableofcontents[
+          currentsection,
+          currentsubsection,
+          % sectionstyle=show/hide,
+          subsectionstyle=show/hide,
+          sections={-4},
+        ]
+      \end{column}
+      \begin{column}{.5\textwidth}
+        \tableofcontents[
+          currentsection,
+          currentsubsection,
+          % sectionstyle=show/hide,
+          subsectionstyle=show/hide,
+          sections={5-},
+        ]
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \addtocounter{framenumber}{-1}
+}
+
+\begin{document}
+\begin{frame}
+	\titlepage % Output the title slide, automatically created using the text entered in the PRESENTATION INFORMATION block above
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% TABLE OF CONTENTS SLIDE
+%----------------------------------------------------------------------------------------
+
+% The table of contents outputs the sections and subsections that appear in your presentation, specified with the standard \section and \subsection commands. You may either display all sections and subsections on one slide with \tableofcontents, or display each section at a time on subsequent slides with \tableofcontents[pausesections]. The latter is useful if you want to step through each section and mention what you will discuss.
+
+\begin{frame}
+	\frametitle{Presentation Overview} % Slide title, remove this command for no title
+
+  % NOTE: Two column version
+  \begin{columns}[t]
+    \begin{column}{.5\textwidth}
+      \tableofcontents[
+        pausesections,
+        % sectionstyle=show,
+        % subsectionstyle=show,
+        % hideothersubsections,
+        sections={-4}
+    ]
+    \end{column}
+    % \begin{column}<+->{.5\textwidth}
+    \begin{column}<+->{.5\textwidth}
+      \only<.>{\setcounter{tocseccounter}{\slideinframe}}
+      \advanceslidecounter{-\thetocseccounter}
+      \tableofcontents[
+        pausesections,
+        % sectionstyle=show,
+        % subsectionstyle=show,
+        % hideothersubsections,
+        sections={5-}
+      ]
+    \end{column}
+  \end{columns}
+  \addtocounter{framenumber}{-1}
+
+
+	% NOTE: One column version
+	%\tableofcontents[pausesections] % Output the table of contents (break sections up across separate slides)
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% Actual Contents
+%----------------------------------------------------------------------------------------
+
+\section{Introduction}
+\begin{frame}
+	\frametitle{Introduction} % Slide title, remove this command for no title
+  \framesubtitle{A subtitle}
+  {
+    \Large \bf
+    What is this?
+  }
+
+  A template for beamer presentations.
+  I made this template following RPI's official powerpoint template and logos~\cite{rpiHomeStrategicCommunications}. 
+
+  \vspace{1cm}
+  {
+    \Large \bf
+    Why did I do this?
+  }
+
+  I couldn't find an existing one and I didn't want to copy over citations manually.
+	
+\end{frame}
+
+\subsection{Table of Contents}
+\begin{frame}
+  \frametitle{Table of Contents}
+  \begin{itemize}
+    \item You already saw the table of contents.
+    \item By default, it is in one column. If you want to divide it to multiple columns, you can use minipage or columns~\cite{samcarter_is_at_topanswers.xyzAnswerBeamerVertical2013}
+    \item To make use of this, you need to use sections, which should be placed outside of the frame~\cite{campaAnswerAtbeginsectionReturns2022}.
+    \item Use \texttt{AtBeginSection} to automatically show the table of contents at the beginning of each section.
+\end{itemize}
+\end{frame}
+
+\subsection{Notes}
+\begin{frame}
+	\frametitle{Few notes}
+  \begin{itemize}
+    \item I tried to use relative values for margins and header/sizes where I could. It should scale well with different page sizes.
+    \item I compiled this project with xelatex. I do not know if this will compile well on overleaf since the free version has extreme timeouts now. 
+  \end{itemize}
+\end{frame}
+
+\section{Lists}
+\begin{frame}
+	\frametitle{Using lists}
+  Simple example of using lists.
+  \begin{itemize}
+    \item Item 1.
+    \item Item 2.
+  \end{itemize}
+
+  \begin{enumerate}
+  \setlength{\leftmargini}{12pt}
+    \item Enumerate 1
+    \item Enumerate 2
+  \end{enumerate}
+  I think this looks pretty similar to how the powerpoint one looks.
+\end{frame}
+
+\section{Figures}
+\begin{frame}
+	\frametitle{Using figures}
+  Here is an example of a figure.
+  \begin{figure}
+    \centering
+      \begin{minipage}{.5\textwidth}
+          \centering
+          \includegraphics[width=.7\linewidth]{example-image-a}
+          \caption{A subfigure}
+      \end{minipage}%
+      \begin{minipage}{.5\textwidth}
+          \centering
+          \includegraphics[width=.7\linewidth]{example-image-b}
+          \caption{Another subfigure}
+      \end{minipage}
+    \caption{Example of a figure side by side.}
+  \end{figure}
+\end{frame}
+
+\subsection{Figures in Full Screen}
+\begin{frame}
+	\frametitle{Using a full screen image}
+  Next slide shows how to use an image in full screen. 
+  I got this from 
+  \href{
+  https://tex.stackexchange.com/questions/3915/image-on-full-slide-in-beamer-package
+  }{\color{RPIred}\underline{here}}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{example-image-a}}
+\begin{frame}[plain]
+\end{frame}
+}
+
+\section{Tables}
+\begin{frame}
+  \frametitle{A Table}
+  \centering
+  \begin{minipage}{0.3\linewidth}
+    \begin{table}
+      \centering
+      {\small
+      \begin{tabular}[c]{lll}
+      \toprule
+      \textbf{Col 1} & \textbf{Col 2} & \textbf{Col 3} \\ \midrule
+      a & b & c \\
+      d & e & f \\
+      \bottomrule
+      \end{tabular}
+      }
+      \caption{An example table}
+      \label{tab:}
+    \end{table}
+  \end{minipage}
+  \begin{minipage}{0.6\linewidth}
+    \textbf{Findings}\par
+    \begin{itemize}
+      \item This is indeed a table.
+      \item Use minipage to put two things side by side, just like the images.
+      \item You can also use columns, but it's not necessary~\cite{scharrerAnswerMinipageColumns2011}.
+        \begin{itemize}
+          \item Columns are good if you want all items aligned to the top.
+          \item Minipages are good if you want items to be centered in the middle.
+        \end{itemize}
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+
+\section{Textboxes}
+\begin{frame}
+  \frametitle{Textboxes}
+  \centering
+  \begin{minipage}{0.3\linewidth}
+    \begin{primaryblock}[equal height group=A]{First Block}
+    % I'm also going to set the indent for them so they play nicely with the textboxes
+    \setlength{\leftmargini}{8pt}
+% label=block:first-block 
+    \begin{itemize}
+      \item First item of first block.
+      \item Second item of first block.
+      \item Notice that the next block matches the height of this one.
+      \item I am also changing the indentation of bullets so it looks better in the boxes.
+    \end{itemize}
+    \end{primaryblock}
+  \end{minipage}
+  \begin{minipage}{0.3\linewidth}
+    \begin{secondaryblock}[equal height group=A]{Second Block}
+      \setlength{\leftmargini}{8pt}
+      \begin{itemize}
+        \item First item of second block.
+        \begin{itemize}
+          \item first sub item of second block.
+        \end{itemize}
+      \end{itemize}
+    \end{secondaryblock}
+  \end{minipage}
+  \begin{minipage}{0.3\linewidth}
+    \begin{primaryblock}[]{Third Block}
+        % \item First point of second block.
+        This one doesn't have a list and doesn't match the height!
+    \end{primaryblock}
+  \end{minipage}
+\end{frame}
+
+\section{Using Bibtex}
+\begin{frame}
+  \frametitle{Using Bibtex}
+  \begin{itemize}
+    \item It should be the same as using your regular bibtex.
+    \item I will also refer to some resources~\cite{anglimAnswerImageFull2010,fiandrinoAnswerDesignCustom2013,kormyloAnswerMakeTikz2017} that helped me put this together.
+    \item You can add ``[allowframebreaks]'' to the frame to automatically contniue the reference list in the text page if you have too many.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+  \frametitle{References}
+  \bibliographystyle{plain}
+  \bibliography{references}
+\end{frame}
+
+
+\end{document}
