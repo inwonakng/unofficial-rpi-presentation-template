@@ -16,30 +16,21 @@
 %----------------------------------------------------------------------------------------
 
 % \title[A Short Title for Your Slides]{A Very Long and Multi-Lined Full Presentation Title That You Probably Shouldn't Use Because Titles Should not be This Long, but I Will Do It For Debugging} 
-\title[A Short Title for Your Slides]{Unofficial beamer presentation template for RPI} 
-
+\title[A Short Title for Your Slides]{(Unofficial)\\RPI Beamer Presentation Template} 
 \subtitle{Optional Subtitle} % Presentation subtitle, remove this command if a subtitle isn't required
-
 \author[]{Inwon Kang \and StackOverflow} % Presenter name(s), the optional parameter can contain a shortened version to appear on the bottom of every slide, while the main parameter will appear on the title slide
+\institute[RPI]{Department of Computer Science} 
 
-\institute[RPI]{Department of Computer Science} % Your institution, the optional parameter can be used for the institution shorthand and will appear on the bottom of every slide after author names, while the required parameter is used on the title slide and can include your email address or additional information on separate lines
-
-\date[\today]{\today} % Presentation date or conference/meeting name, the optional parameter can contain a shortened version to appear on the bottom of every slide, while the required parameter value is output to the title slide
-
-% \AtBeginSection[]{%
-%   \begin{frame}<beamer>
-%     \frametitle{Outline}
-%     \tableofcontents[sectionstyle=show/hide,subsectionstyle=hide/show/hide]
-%   \end{frame}
-%   \addtocounter{framenumber}{-1}% If you don't want them to affect the slide number
-% }
+\date[\today]{\today}
 
 % NOTE: Comment this out if you don't want it
 \AtBeginSection{
-  \begin{frame}<beamer>
+  \begin{frame}[noframenumbering]
     \frametitle{Outline}
     \begin{columns}[t]
-      \begin{column}{.5\textwidth}
+      \begin{column}{.1\textwidth}
+      \end{column}
+      \begin{column}{.45\textwidth}
         \tableofcontents[
           currentsection,
           % sectionstyle=show/hide,
@@ -47,7 +38,7 @@
           sections={-4},
         ]
       \end{column}
-      \begin{column}{.5\textwidth}
+      \begin{column}{.45\textwidth}
         \tableofcontents[
           currentsection,
           % sectionstyle=show/hide,
@@ -56,16 +47,19 @@
         ]
       \end{column}
     \end{columns}
+    % NOTE: If you don't want them to affect the slide number
+    % \addtocounter{framenumber}{-1}
   \end{frame}
-  \addtocounter{framenumber}{-1}% If you don't want them to affect the slide number
 }
 
 % NOTE: Comment this out if you don't want it
 \AtBeginSubsection[]{
-  \begin{frame}<beamer>
+  \begin{frame}[noframenumbering]
     \frametitle{Outline}
     \begin{columns}[t]
-      \begin{column}{.5\textwidth}
+      \begin{column}{.1\textwidth}
+      \end{column}
+      \begin{column}{.45\textwidth}
         \tableofcontents[
           currentsection,
           currentsubsection,
@@ -74,7 +68,7 @@
           sections={-4},
         ]
       \end{column}
-      \begin{column}{.5\textwidth}
+      \begin{column}{.45\textwidth}
         \tableofcontents[
           currentsection,
           currentsubsection,
@@ -84,12 +78,13 @@
         ]
       \end{column}
     \end{columns}
+    % \addtocounter{framenumber}{-1}
   \end{frame}
-  \addtocounter{framenumber}{-1}
 }
 
 \begin{document}
-\begin{frame}
+% NOTE: Plain is what blocks the footline from showing up on the title page
+\begin{frame}[plain]
 	\titlepage % Output the title slide, automatically created using the text entered in the PRESENTATION INFORMATION block above
 \end{frame}
 
@@ -99,12 +94,14 @@
 
 % The table of contents outputs the sections and subsections that appear in your presentation, specified with the standard \section and \subsection commands. You may either display all sections and subsections on one slide with \tableofcontents, or display each section at a time on subsequent slides with \tableofcontents[pausesections]. The latter is useful if you want to step through each section and mention what you will discuss.
 
-\begin{frame}
+\begin{frame}[noframenumbering]
 	\frametitle{Presentation Overview} % Slide title, remove this command for no title
 
   % NOTE: Two column version
   \begin{columns}[t]
-    \begin{column}{.5\textwidth}
+      \begin{column}{.1\textwidth}
+      \end{column}
+    \begin{column}{.45\textwidth}
       \tableofcontents[
         pausesections,
         % sectionstyle=show,
@@ -114,7 +111,7 @@
     ]
     \end{column}
     % \begin{column}<+->{.5\textwidth}
-    \begin{column}<+->{.5\textwidth}
+    \begin{column}<+->{.45\textwidth}
       \only<.>{\setcounter{tocseccounter}{\slideinframe}}
       \advanceslidecounter{-\thetocseccounter}
       \tableofcontents[
@@ -126,7 +123,7 @@
       ]
     \end{column}
   \end{columns}
-  \addtocounter{framenumber}{-1}
+  % \addtocounter{framenumber}{-1}
 
 
 	% NOTE: One column version
@@ -258,10 +255,6 @@
       \item This is indeed a table.
       \item Use minipage to put two things side by side, just like the images.
       \item You can also use columns, but it's not necessary~\cite{scharrerAnswerMinipageColumns2011}.
-        \begin{itemize}
-          \item Columns are good if you want all items aligned to the top.
-          \item Minipages are good if you want items to be centered in the middle.
-        \end{itemize}
     \end{itemize}
   \end{minipage}
 \end{frame}
@@ -271,10 +264,9 @@
   \frametitle{Textboxes}
   \centering
   \begin{minipage}{0.3\linewidth}
-    \begin{primaryblock}[equal height group=A]{First Block}
+    \begin{primaryblock}[equal height group=A,label=block:first]{First Block}
     % I'm also going to set the indent for them so they play nicely with the textboxes
     \setlength{\leftmargini}{8pt}
-% label=block:first-block 
     \begin{itemize}
       \item First item of first block.
       \item Second item of first block.
@@ -308,15 +300,14 @@
   \begin{itemize}
     \item It should be the same as using your regular bibtex.
     \item I will also refer to some resources~\cite{anglimAnswerImageFull2010,fiandrinoAnswerDesignCustom2013,kormyloAnswerMakeTikz2017} that helped me put this together.
-    \item You can add ``[allowframebreaks]'' to the frame to automatically contniue the reference list in the text page if you have too many.
+    \item You can add \texttt{[allowframebreaks]} to the frame to automatically contniue the reference list in the text page if you have too many.
   \end{itemize}
 \end{frame}
 
 \begin{frame}[allowframebreaks]
   \frametitle{References}
-  \bibliographystyle{plain}
+  \bibliographystyle{unsrt}
   \bibliography{references}
 \end{frame}
-
 
 \end{document}
