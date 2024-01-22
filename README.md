@@ -6,10 +6,10 @@ Please feel free to suggest any changes (even better) implement your own.
 # Screenshots
 
 ## Title Page
-![](./screenshots/title.png)
+![](./screenshots/title-page.png)
 
 ## Regular Page
-![](./screenshots/plain.png)
+![](./screenshots/plain-page.png)
 
 ## Textblocks
 ![](./screenshots/textblocks.png)
