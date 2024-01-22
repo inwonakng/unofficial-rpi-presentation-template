@@ -62,7 +62,6 @@
 \setbeamersize{
   text margin left=0.02\paperwidth,
   text margin right=0.02\paperwidth,
-  % text margin top=0.02\paperheight,
 }
 % this adds to the top margin
 % \addtolength{\headsep}{0.1\paperheight}
@@ -75,12 +74,12 @@
   \begin{tikzpicture}[remember picture, overlay]
     \node
     at ($(current page.north) + (-0.25\paperwidth,-0.22\paperheight)$)
-    % ([xshift=0.07\paperwidth, yshift=-0.1\paperheight]current page.north west)
     {\includegraphics[height=0.17\paperheight]{./logos/Rensselaer-Large-Logo-with-Tagline-CMYK-TwoColor.png}};
     \fill[color=RPIred] (current page.west)rectangle(current page.south east);
     \node[
       % text centered,
       text width=0.95\paperwidth,
+      align=flush left,
       % text depth=1.15\paperheight,
       % text height=0.15\paperheight,
       % draw=green,
@@ -95,8 +94,8 @@
     at ($(current page.south) + (0, 0.05\paperheight)$)
     {
     \usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor%
-    ~|~\usebeamercolor[fg]{author}\usebeamerfont{author}\insertinstitute%
-    \hfill|\hfill
+    ~--~\usebeamercolor[fg]{author}\usebeamerfont{author}\insertinstitute%
+    \hfill
     \usebeamercolor[fg]{author}\usebeamerfont{author}\insertdate%
     };
   \end{tikzpicture}
@@ -111,14 +110,16 @@
   % If you do that, make sure the change the frametitle and framesubtitle font colors to white as well.
   \begin{tikzpicture}[remember picture, overlay]
 
-  % NOTE: use this if you want thick borders
+  % NOTE: use this if you just want bottom border
   \draw[draw=RPIred, thick]($(current page.north west)+(0,-0.15\paperheight)$)
   -- ($(current page.north east)+(0,-0.15\paperheight)$);
 
-  % use this if you want a red background
+  % NOTE: use this if you want a red background
   % \fill[color=RPIred] (current page.north west)rectangle($(current page.north east) + (0, -0.15\paperheight)$);
+
   \ifx\insertframesubtitle\@empty%
     {
+    % if no subtitle, just title centered
     \node[text width=0.95\paperwidth, align=left]
     at ($(current page.north)+(0,-0.08\paperheight)$)
     { \usebeamercolor[fg]{slidetitle}\usebeamerfont{slidetitle}\insertframetitle };
@@ -135,7 +136,7 @@
     \fi
   \end{tikzpicture}
   \vspace{0.1\paperheight}
-  % \end{beamercolorbox}
+  \setbeamertemplate{footline}{}
 }
 
 \setbeamertemplate{footline}{
@@ -155,7 +156,7 @@
     % page number
     \node[text width=0.95\paperwidth, align=right]
     at ($(current page.south)+(0,0.062\paperheight)$)
-    { \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertpagenumber };
+    { \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber };
     % date
     \node[text width=0.95\paperwidth, align=right]
     at ($(current page.south)+(0,0.033\paperheight)$)
@@ -169,7 +170,7 @@
 %----------------------------------------------------------------------------------------
 \setbeamertemplate{items}[square]
 \setbeamertemplate{enumerate items}[default]
-\setbeamertemplate{sections/subsections in toc}[square]
+\setbeamertemplate{sections/subsections in toc}[circle]
 
 %----------------------------------------------------------------------------------------
 % Textblock
@@ -186,7 +187,6 @@
   colback=white,
   colbacktitle=RPIred,
   colframe=RPIred,
-  % title=Example~\thetcbcounter: #2,
   title=#2,
   #1,
 }
