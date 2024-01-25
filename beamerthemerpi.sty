@@ -66,6 +66,7 @@
 \setbeamercolor{frametitle}{fg=RPIdarkgray}
 \setbeamercolor{framesubtitle}{fg=RPIlightgray}
 \setbeamercolor{framefooter}{fg=white}
+\setbeamercolor{section in head/foot}{fg=red, bg=green}
 
 %----------------------------------------------------------------------------------------
 % Page margins
@@ -124,7 +125,7 @@
 		% NOTE: use this if you just want bottom border
 		\draw[draw=RPIred, thick]($(current page.north west)+(0,-0.15\paperheight)$)
 		-- ($(current page.north east)+(0,-0.15\paperheight)$);
-
+    % \insertnavigation{\paperwidth}
 		% NOTE: use this if you want a red background
 		% \fill[color=RPIred] (current page.north west)rectangle($(current page.north east) + (0, -0.15\paperheight)$);
 
@@ -150,6 +151,10 @@
 	\setbeamertemplate{footline}{}
 }
 
+% \setbeamertemplate{headline}{
+%   \insertnavigation{.3\paperwidth}
+% }
+
 \setbeamertemplate{footline}{
 	\vspace{0.1\paperheight}
 	\begin{tikzpicture}[remember picture, overlay]
@@ -167,7 +172,7 @@
 		% page number
 		\node[text width=0.95\paperwidth, align=right]
 		at ($(current page.south)+(0,0.062\paperheight)$)
-		{ \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber };
+		{ \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber/\inserttotalframenumber };
 		% date
 		\node[text width=0.95\paperwidth, align=right]
 		at ($(current page.south)+(0,0.033\paperheight)$)
