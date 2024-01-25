@@ -1,5 +1,5 @@
 \documentclass[
-	11pt, % Set the default font size, options include: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
+	10pt, % Set the default font size, options include: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
 	%t, % Uncomment to vertically align all slide content to the top of the slide, rather than the default centered
 	aspectratio=169, % Uncomment to set the aspect ratio to a 16:9 ratio which matches the aspect ratio of 1080p and 4K screens and projectors
 	% table,
@@ -10,7 +10,7 @@
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule for better rules in tables
 
 \usetheme{rpi}
-
+\addbibresource{references.bib}
 %----------------------------------------------------------------------------------------
 % PRESENTATION INFORMATION
 %----------------------------------------------------------------------------------------
@@ -28,13 +28,13 @@
 	\begin{frame}[noframenumbering]
 		\frametitle{Outline}
 		\begin{columns}[t]
-			\begin{column}{.05\textwidth} \end{column}
+			\begin{column}{.05\textwidth}\end{column}
 			\begin{column}{.45\textwidth}
 				\tableofcontents[
 					currentsection,
 					% sectionstyle=show/hide,
 					subsectionstyle=hide/show/hide,
-					sections={-4},
+					sections={-3},
 				]
 			\end{column}
 			\begin{column}{.45\textwidth}
@@ -42,7 +42,7 @@
 					currentsection,
 					% sectionstyle=show/hide,
 					subsectionstyle=hide/show/hide,
-					sections={5-},
+					sections={4-},
 				]
 			\end{column}
 		\end{columns}
@@ -63,8 +63,8 @@
 					currentsection,
 					currentsubsection,
 					% sectionstyle=show/hide,
-					subsectionstyle=show/hide,
-					sections={-4},
+					% subsectionstyle=show/hide,
+					sections={-3},
 				]
 			\end{column}
 			\begin{column}{.45\textwidth}
@@ -72,12 +72,11 @@
 					currentsection,
 					currentsubsection,
 					% sectionstyle=show/hide,
-					subsectionstyle=show/hide,
-					sections={5-},
+					% subsectionstyle=show/hide,
+					sections={4-},
 				]
 			\end{column}
 		\end{columns}
-		% \addtocounter{framenumber}{-1}
 	\end{frame}
 }
 
@@ -98,31 +97,23 @@
 
 	% NOTE: Two column version
 	\begin{columns}[t]
-		\begin{column}{.05\textwidth} \end{column}
+		\begin{column}{.05\textwidth}
+		\end{column}
 		\begin{column}{.45\textwidth}
 			\tableofcontents[
 				pausesections,
-				% sectionstyle=show,
-				% subsectionstyle=show,
-				% hideothersubsections,
-				sections={-4}
+				sections={-3}
 			]
 		\end{column}
-		% \begin{column}<+->{.5\textwidth}
 		\begin{column}<+->{.45\textwidth}
 			\only<.>{\setcounter{tocseccounter}{\slideinframe}}
 			\advanceslidecounter{-\thetocseccounter}
 			\tableofcontents[
 				pausesections,
-				% sectionstyle=show,
-				% subsectionstyle=show,
-				% hideothersubsections,
-				sections={5-}
+				sections={4-}
 			]
 		\end{column}
 	\end{columns}
-	% \addtocounter{framenumber}{-1}
-
 
 	% NOTE: One column version
 	%\tableofcontents[pausesections] % Output the table of contents (break sections up across separate slides)
@@ -154,7 +145,7 @@
 
 \end{frame}
 
-\subsection{Table of Contents}
+\section{Table of Contents}
 \begin{frame}
 	\frametitle{Table of Contents}
 	\begin{itemize}
@@ -165,16 +156,9 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{Notes}
-\begin{frame}
-	\frametitle{Few notes}
-	\begin{itemize}
-		\item I tried to use relative values for margins and header/sizes where I could. It should scale well with different page sizes.
-		\item I compiled this project with xelatex. I do not know if this will compile well on overleaf since the free version has extreme timeouts now.
-	\end{itemize}
-\end{frame}
 
-\section{Lists}
+\section{List/Figure/Table}
+\subsection{Lists}
 \begin{frame}
 	\frametitle{Using lists}
 	Simple example of using lists.
@@ -191,7 +175,7 @@
 	I think this looks pretty similar to how the powerpoint one looks.
 \end{frame}
 
-\section{Figures}
+\subsection{Figures}
 \begin{frame}
 	\frametitle{Using figures}
 	Here is an example of a figure.
@@ -227,7 +211,7 @@
 \end{frame}
 }
 
-\section{Tables}
+\subsection{Tables}
 \begin{frame}
 	\frametitle{A Table}
 	\centering
@@ -257,7 +241,7 @@
 	\end{minipage}
 \end{frame}
 
-\section{Textboxes}
+\subsection{Textboxes}
 \begin{frame}
 	\frametitle{Textboxes}
 	\centering
@@ -299,13 +283,29 @@
 		\item It should be the same as using your regular bibtex.
 		\item I will also refer to some resources~\cite{anglimAnswerImageFull2010,fiandrinoAnswerDesignCustom2013,kormyloAnswerMakeTikz2017} that helped me put this together.
 		\item You can add \texttt{[allowframebreaks]} to the frame to automatically contniue the reference list in the text page if you have too many.
+		\item You can use \texttt{\textbackslash tcite} shorthand to use it in \textit{text} mode, i.e. \tcite{anglimAnswerImageFull2010}.
+		\item You can use \texttt{\textbackslash fcite} to add a citation with a footnote on the bottom of the slide.
+		      \begin{itemize}
+			      \item Note that if you are using \texttt{\textbackslash columns} or \texttt{\textbackslash minipage}, the footnote will by default appear in the bottom of the \textit{environment}, not the slide.
+			      \item You can manually escape this by using just \texttt{\textbackslash cite} or \texttt{\textbackslash tcite} and then adding a \texttt{\textbackslash bcite} outside of these environments.
+			      \item e.g. \texttt{\textbackslash bfcite\{fiandrinoAnswerDesignCustom2013\}}.
+		      \end{itemize}
+	\end{itemize}
+	\bfcite{fiandrinoAnswerDesignCustom2013}
+\end{frame}
+
+\section{Some Notes}
+\begin{frame}
+	\frametitle{Few notes}
+	\begin{itemize}
+		\item I tried to use relative values for margins and header/sizes where I could. It should scale well with different page sizes.
+		\item I compiled this project with xelatex. I do not know if this will compile well on overleaf since the free version has extreme timeouts now.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[allowframebreaks]
 	\frametitle{References}
-	\bibliographystyle{unsrt}
-	\bibliography{references}
+	\printbibliography
 \end{frame}
 
 \end{document}

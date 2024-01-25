@@ -14,6 +14,8 @@
 \usepackage{changepage}
 \usepackage{listings}
 
+\usepackage[style=ieee,backend=bibtex,citetracker=true,maxcitenames=2,mincitenames=1]{biblatex}
+
 % NOTE: uncomment if you want the navigations
 \setbeamertemplate{navigation symbols}{}
 
@@ -27,7 +29,7 @@
 %----------------------------------------------------------------------------------------
 % Custom fonts
 %----------------------------------------------------------------------------------------
-\setbeamerfont{title}{size=\huge,series=\bfseries,parent=structure}
+\setbeamerfont{title}{size=\LARGE,series=\bfseries,parent=structure}
 \setbeamerfont{subtitle}{size=\scriptsize,series=\bfseries,parent=structure}
 \setbeamerfont{author}{size=\scriptsize,parent=structure}
 \setbeamerfont{institute}{size=\scriptsize,parent=structure}
@@ -35,22 +37,30 @@
 \setbeamerfont{frametitle}{size=\Large,parent=structure}
 \setbeamerfont{framesubtitle}{size=\normalsize,parent=structure}
 \setbeamerfont{framefooter}{size=\tiny,parent=structure}
-\setbeamerfont{framefootertitle}{size=\footnotesize, series=\bfseries,parent=structure}
+\setbeamerfont{framefootertitle}{size=\scriptsize,parent=structure}
+% \setbeamerfont{footnote}{size=\tiny,shape=\itshape}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{subsection in toc}{size=\small}
 
 %----------------------------------------------------------------------------------------
 % RPI Colors
 %----------------------------------------------------------------------------------------
 \definecolor{RPIred}{RGB}{214,0,28} % RPI Red (primary)
+% \definecolor{blue}{RGB}{0,0,200} % RPI Red (primary)
 \definecolor{RPIdarkgray}{RGB}{84, 88, 90} % RPI Dark Gray (secondary)
-\definecolor{RPIlightgray}{RGB}{158, 162, 162} % UBC Grey (secondary)
+\definecolor{RPIlightgray}{RGB}{158, 162, 162} % RPI light Grey (ternary)
 
-\setbeamercolor{palette primary}{bg=RPIred,fg=white}
-\setbeamercolor{palette secondary}{bg=RPIred,fg=white}
-\setbeamercolor{palette tertiary}{bg=RPIred,fg=white}
-\setbeamercolor{palette quaternary}{bg=RPIred,fg=white}
+\definecolor{RPIlightred}{RGB}{210, 98, 110} % RPI light red (quaternary)
+
+
+% \setbeamercolor{palette primary}{fg=RPIred,bg=white}
+% \setbeamercolor{palette secondary}{fg=RPIred,bg=white}
+% \setbeamercolor{palette tertiary}{fg=RPIred,bg=white}
+% \setbeamercolor{palette quaternary}{fg=RPIred,bg=white}
+
 \setbeamercolor{structure}{fg=RPIred} % itemize, enumerate, etc
 \setbeamercolor{section in toc}{fg=RPIred} % TOC sections
-\setbeamercolor{subsection in head/foot}{bg=RPIdarkgray,fg=white}
+% \setbeamercolor{subsection in head/foot}{bg=RPIdarkgray,fg=white}
 \setbeamercolor{author}{fg=white}
 \setbeamercolor{title}{fg=white}
 \setbeamercolor{frametitle}{fg=RPIdarkgray}
@@ -61,8 +71,8 @@
 % Page margins
 %----------------------------------------------------------------------------------------
 \setbeamersize{
-  text margin left=0.02\paperwidth,
-  text margin right=0.02\paperwidth,
+	text margin left=0.02\paperwidth,
+	text margin right=0.02\paperwidth,
 }
 % this adds to the top margin
 % \addtolength{\headsep}{0.1\paperheight}
@@ -72,34 +82,34 @@
 %----------------------------------------------------------------------------------------
 \defbeamertemplate*{title page}{rpi}[1][]
 {
-  \begin{tikzpicture}[remember picture, overlay]
-    \node
-    at ($(current page.north) + (-0.25\paperwidth,-0.22\paperheight)$)
-    {\includegraphics[height=0.17\paperheight]{./logos/Rensselaer-Large-Logo-with-Tagline-CMYK-TwoColor.png}};
-    \fill[color=RPIred] (current page.west)rectangle(current page.south east);
-    \node[
-      % text centered,
-      text width=0.95\paperwidth,
-      align=flush left,
-      % text depth=1.15\paperheight,
-      % text height=0.15\paperheight,
-      % draw=green,
-    ]
-    at ($(current page.south) + (0, 0.3\paperheight)$)
-    {
-    \usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle 
-    \vfill
-    };
+	\begin{tikzpicture}[remember picture, overlay]
+		\node
+		at ($(current page.north) + (-0.25\paperwidth,-0.22\paperheight)$)
+		{\includegraphics[height=0.17\paperheight]{./logos/Rensselaer-Large-Logo-with-Tagline-CMYK-TwoColor.png}};
+		\fill[color=RPIred] (current page.west)rectangle(current page.south east);
+		\node[
+			% text centered,
+			text width=0.95\paperwidth,
+			align=flush left,
+			% text depth=1.15\paperheight,
+			% text height=0.15\paperheight,
+			% draw=green,
+		]
+		at ($(current page.south) + (0, 0.3\paperheight)$)
+		{
+			\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle
+			\vfill
+		};
 
-    \node[text width=0.95\paperwidth, align=left]
-    at ($(current page.south) + (0, 0.05\paperheight)$)
-    {
-    \usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor%
-    ~--~\usebeamercolor[fg]{author}\usebeamerfont{author}\insertinstitute%
-    \hfill
-    \usebeamercolor[fg]{author}\usebeamerfont{author}\insertdate%
-    };
-  \end{tikzpicture}
+		\node[text width=0.95\paperwidth, align=left]
+		at ($(current page.south) + (0, 0.05\paperheight)$)
+		{
+			\usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor%
+			~--~\usebeamercolor[fg]{author}\usebeamerfont{author}\insertinstitute%
+			\hfill
+			\usebeamercolor[fg]{author}\usebeamerfont{author}\insertdate%
+		};
+	\end{tikzpicture}
 }
 
 %----------------------------------------------------------------------------------------
@@ -107,62 +117,62 @@
 %----------------------------------------------------------------------------------------
 \defbeamertemplate*{frametitle}{rpi}[1][]
 {
-  % NOTE: this is following the official powerpoint template. You can uncomment the other one to use a filled red box if you don't like this.
-  % If you do that, make sure the change the frametitle and framesubtitle font colors to white as well.
-  \begin{tikzpicture}[remember picture, overlay]
+	% NOTE: this is following the official powerpoint template. You can uncomment the other one to use a filled red box if you don't like this.
+	% If you do that, make sure the change the frametitle and framesubtitle font colors to white as well.
+	\begin{tikzpicture}[remember picture, overlay]
 
-  % NOTE: use this if you just want bottom border
-  \draw[draw=RPIred, thick]($(current page.north west)+(0,-0.15\paperheight)$)
-  -- ($(current page.north east)+(0,-0.15\paperheight)$);
+		% NOTE: use this if you just want bottom border
+		\draw[draw=RPIred, thick]($(current page.north west)+(0,-0.15\paperheight)$)
+		-- ($(current page.north east)+(0,-0.15\paperheight)$);
 
-  % NOTE: use this if you want a red background
-  % \fill[color=RPIred] (current page.north west)rectangle($(current page.north east) + (0, -0.15\paperheight)$);
+		% NOTE: use this if you want a red background
+		% \fill[color=RPIred] (current page.north west)rectangle($(current page.north east) + (0, -0.15\paperheight)$);
 
-  \ifx\insertframesubtitle\@empty%
-    {
-    % if no subtitle, just title centered
-    \node[text width=0.95\paperwidth, align=left]
-    at ($(current page.north)+(0,-0.08\paperheight)$)
-    { \usebeamercolor[fg]{slidetitle}\usebeamerfont{slidetitle}\insertframetitle };
-    }
-    \else%
-    {
-      \node[text width=0.95\paperwidth, align=left]
-      at ($(current page.north)+(0,-0.05\paperheight)$)
-      { \usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle };
-      \node[text width=0.95\paperwidth, align=left]
-      at ($(current page.north)+(0,-0.11\paperheight)$)
-      { \usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle };
-    }%
-    \fi
-  \end{tikzpicture}
-  \vspace{0.1\paperheight}
-  \setbeamertemplate{footline}{}
+		\ifx\insertframesubtitle\@empty%
+			{
+				% if no subtitle, just title centered
+				\node[text width=0.95\paperwidth, align=left]
+				at ($(current page.north)+(0,-0.08\paperheight)$)
+				{ \usebeamercolor[fg]{slidetitle}\usebeamerfont{slidetitle}\insertframetitle };
+			}
+			\else%
+			{
+				\node[text width=0.95\paperwidth, align=left]
+				at ($(current page.north)+(0,-0.05\paperheight)$)
+				{ \usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle };
+				\node[text width=0.95\paperwidth, align=left]
+				at ($(current page.north)+(0,-0.11\paperheight)$)
+				{ \usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle };
+			}%
+		\fi
+	\end{tikzpicture}
+	\vspace{0.1\paperheight}
+	\setbeamertemplate{footline}{}
 }
 
 \setbeamertemplate{footline}{
-  \vspace{0.1\paperheight}
-  \begin{tikzpicture}[remember picture, overlay]
-    % red background for footer
-    \fill[color=RPIred] (current page.south west)rectangle($(current page.south east) + (0, 0.1\paperheight)$);
-    % white logo
-    \node 
-    at ($(current page.south) + (-0.4\paperwidth,0.05\paperheight)$)
-    {\includegraphics[height=0.06\paperheight]{./logos/Rensselaer-Large-Logo-RGB-White.png}};
-    % shorttitle 
-    % NOTE: Centering makes gaps too wide so I used spaceskip. Wonder if there is a tikz native way to do this.
-    \node[text width=0.95\paperwidth, align=center]
-    at ($(current page.south)+(0,0.05\paperheight)$)
-    {\spaceskip=2pt \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertshorttitle };
-    % page number
-    \node[text width=0.95\paperwidth, align=right]
-    at ($(current page.south)+(0,0.062\paperheight)$)
-    { \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber };
-    % date
-    \node[text width=0.95\paperwidth, align=right]
-    at ($(current page.south)+(0,0.033\paperheight)$)
-    { \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertdate };
-  \end{tikzpicture}
+	\vspace{0.1\paperheight}
+	\begin{tikzpicture}[remember picture, overlay]
+		% red background for footer
+		\fill[color=RPIred] (current page.south west)rectangle($(current page.south east) + (0, 0.1\paperheight)$);
+		% white logo
+		\node
+		at ($(current page.south) + (-0.4\paperwidth,0.05\paperheight)$)
+		{\includegraphics[height=0.06\paperheight]{./logos/Rensselaer-Large-Logo-RGB-White.png}};
+		% shorttitle 
+		% NOTE: Centering makes gaps too wide so I used spaceskip. Wonder if there is a tikz native way to do this.
+		\node[text width=0.95\paperwidth, align=center]
+		at ($(current page.south)+(0,0.05\paperheight)$)
+		{\spaceskip=2pt \usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}\insertshorttitle };
+		% page number
+		\node[text width=0.95\paperwidth, align=right]
+		at ($(current page.south)+(0,0.062\paperheight)$)
+		{ \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber };
+		% date
+		\node[text width=0.95\paperwidth, align=right]
+		at ($(current page.south)+(0,0.033\paperheight)$)
+		{ \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertdate };
+	\end{tikzpicture}
 
 }
 
@@ -171,41 +181,42 @@
 %----------------------------------------------------------------------------------------
 \setbeamertemplate{items}[square]
 \setbeamertemplate{enumerate items}[default]
-\setbeamertemplate{sections/subsections in toc}[circle]
+\setbeamertemplate{section in toc}[circle]
+\setbeamertemplate{subsection in toc}{\leavevmode\leftskip=1em$\bullet$\hskip1em\inserttocsubsection\par}
 
 %----------------------------------------------------------------------------------------
 % Textblock
 %----------------------------------------------------------------------------------------
 \newtcolorbox[auto counter]{primaryblock}[2][]{
-  enhanced,
-  breakable,
-  % boxsep=1pt,
-  left=4pt,
-  right=4pt,
-  top=4pt,
-  bottom=4pt,
-  fonttitle=\scshape,
-  colback=white,
-  colbacktitle=RPIred,
-  colframe=RPIred,
-  title=#2,
-  #1,
+	enhanced,
+	breakable,
+	% boxsep=1pt,
+	left=4pt,
+	right=4pt,
+	top=4pt,
+	bottom=4pt,
+	fonttitle=\scshape,
+	colback=white,
+	colbacktitle=RPIred,
+	colframe=RPIred,
+	title=#2,
+	#1,
 }
 \newtcolorbox[auto counter]{secondaryblock}[2][]{
-  enhanced,
-  breakable,
-  % boxsep=1pt,
-  left=4pt,
-  right=4pt,
-  top=4pt,
-  bottom=4pt,
-  fonttitle=\scshape,
-  colback=white,
-  colbacktitle=RPIdarkgray,
-  colframe=RPIdarkgray,
-  % title=Example~\thetcbcounter: #2,
-  title=#2,
-  #1,
+	enhanced,
+	breakable,
+	% boxsep=1pt,
+	left=4pt,
+	right=4pt,
+	top=4pt,
+	bottom=4pt,
+	fonttitle=\scshape,
+	colback=white,
+	colbacktitle=RPIdarkgray,
+	colframe=RPIdarkgray,
+	% title=Example~\thetcbcounter: #2,
+	title=#2,
+	#1,
 }
 
 %----------------------------------------------------------------------------------------
@@ -213,10 +224,98 @@
 % https://tex.stackexchange.com/questions/462341/beamer-table-of-contents-overly
 %----------------------------------------------------------------------------------------
 \newcommand{\advanceslidecounter}[1]{%
-  \advance\beamer@slideinframe by #1 %
+	\advance\beamer@slideinframe by #1 %
 }%
 
 \newcommand{\slideinframe}{\the\beamer@slideinframe}
 \newcounter{tocseccounter}
+
+
+%----------------------------------------------------------------------------------------
+% Inline Citation
+% https://tex.stackexchange.com/a/396754/28146
+%----------------------------------------------------------------------------------------
+
+% A shorter version of \fullcite that doesn't include stuff like urldate
+\newbibmacro*{shortcite}{%
+	% \DeclareFieldFormat{date}{\mkbibparens{##1}}%
+	\textcolor{RPIred}{%
+		\printnames{labelname}%
+	}%
+	\setunit{\addcomma\space``}%
+	\printfield{labeltitle}%
+	\setunit{''\addcomma\space}%
+	\textcolor{RPIlightred}{%
+		\printdate%
+	}%
+	\setunit{\addcomma\space}%
+	\textcolor{RPIlightred}{%
+		\ifentrytype{misc}{%
+			% if it is misc type
+			\iffieldundef{eprint}{
+				% if it doesn't have eprint 
+				\iffieldundef{journaltitle}{}{%
+					\printfield{journaltitle}%
+				}%
+			}{
+				% if it does have eprint field (mostly for arxiv)
+				\printfield{eprint}%
+			}
+		}{}%
+		\ifentrytype{article}{%
+			% if it is article type
+			\iffieldundef{journaltitle}{}{
+				\printfield{journaltitle}%
+			}%
+		}{}%
+		\ifentrytype{inproceedings}{%
+			% if it is inproceedings type
+			\printfield{booktitle}%
+		}{}%
+	}%
+	\addperiod%
+}
+
+\DeclareCiteCommand{\shortcite}%
+{\usebibmacro{cite:init}}
+{\usebibmacro{shortcite}}
+{}
+{\usebibmacro{cite:dump}}
+
+% creates a blank citation that adds to the footnote
+\newbibmacro*{blankfootcite}{%
+	\renewcommand{\@makefntext}[1]{\noindent\normalfont##1}%
+	\footnotetext{%
+		\tiny
+		\printtext[labelnumberwidth]{%
+			\printfield{labelprefix}%
+			\printfield{labelnumber}%
+		}%
+		\addspace
+		\shortcite{\thefield{entrykey}}%
+	}%
+}
+
+\DeclareCiteCommand{\blankfootcite}%
+{\usebibmacro{cite:init}}
+{\usebibmacro{blankfootcite}}
+{}
+{\usebibmacro{cite:dump}}
+
+% Clear URLDate (Last visited ...)
+\AtEveryBibitem{%
+  \clearfield{urldate}%
+  \clearfield{urlyear}%
+  \clearfield{urlmonth}%
+  \clearfield{urlday}%
+}
+
+% Footcite 
+\newcommand{\fcite}[1]{\cite{#1}\blankfootcite{#1}}
+\newcommand{\tfcite}[1]{\textcite{#1}\blankfootcite{#1}}
+\newcommand{\bfcite}[1]{\blankfootcite{#1}}
+
+% Shorthands for citing
+\newcommand{\tcite}[1]{\textcite{#1}}
 
 \mode<all>
