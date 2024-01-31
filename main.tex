@@ -281,13 +281,13 @@
 	\frametitle{Using Bibtex}
 	\begin{itemize}
 		\item It should be the same as using your regular bibtex.
-		\item I will also refer to some resources~\cite{anglimAnswerImageFull2010,fiandrinoAnswerDesignCustom2013,kormyloAnswerMakeTikz2017} that helped me put this together.
-		\item You can add \texttt{[allowframebreaks]} to the frame to automatically contniue the reference list in the text page if you have too many.
+		\item To showcase, let's cite some resources~\cite{anglimAnswerImageFull2010,fiandrinoAnswerDesignCustom2013,kormyloAnswerMakeTikz2017} that helped me put this together.
+		\item You can add \texttt{[allowframebreaks]} to the frame to automatically continue the reference list in the text page if you have too many.
 		\item You can use \texttt{\textbackslash tcite} shorthand to use it in \textit{text} mode, i.e. \tcite{anglimAnswerImageFull2010}.
 		\item You can use \texttt{\textbackslash fcite} to add a citation with a footnote on the bottom of the slide.
 		      \begin{itemize}
 			      \item Note that if you are using \texttt{\textbackslash columns} or \texttt{\textbackslash minipage}, the footnote will by default appear in the bottom of the \textit{environment}, not the slide.
-			      \item You can manually escape this by using just \texttt{\textbackslash cite} or \texttt{\textbackslash tcite} and then adding a \texttt{\textbackslash bcite} outside of these environments.
+			      \item You can manually escape this by using just \texttt{\textbackslash cite} or \texttt{\textbackslash tcite} and then adding a \texttt{\textbackslash bfcite} outside of these environments.
 			      \item e.g. \texttt{\textbackslash bfcite\{fiandrinoAnswerDesignCustom2013\}}.
 		      \end{itemize}
 	\end{itemize}
@@ -301,6 +301,7 @@
 		\item I tried to use relative values for margins and header/sizes where I could. It should scale well with different page sizes.
 		\item I compiled this project with xelatex. I do not know if this will compile well on overleaf since the free version has extreme timeouts now.
 	\end{itemize}
+  \fcite{cazenavetteDatasetDistillationMatching2022}
 \end{frame}
 
 \begin{frame}[allowframebreaks]
