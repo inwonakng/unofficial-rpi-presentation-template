@@ -241,6 +241,22 @@
 % https://tex.stackexchange.com/a/396754/28146
 %----------------------------------------------------------------------------------------
 
+% Clear URLDate (Last visited ...)
+\AtEveryBibitem{%
+	\clearfield{urldate}%
+	\clearfield{urlyear}%
+	\clearfield{urlmonth}%
+	\clearfield{urlday}%
+}
+
+\AtEveryCitekey{%
+	\clearfield{urldate}%
+	\clearfield{urlyear}%
+	\clearfield{urlmonth}%
+	\clearfield{urlday}%
+  \clearfield{pages}%
+}
+
 % A shorter version of \fullcite that doesn't include stuff like urldate
 \newbibmacro*{shortcite}{%
 	% \DeclareFieldFormat{date}{\mkbibparens{##1}}%
@@ -306,14 +322,6 @@
 {\usebibmacro{blankfootcite}}
 {}
 {\usebibmacro{cite:dump}}
-
-% Clear URLDate (Last visited ...)
-\AtEveryBibitem{%
-	\clearfield{urldate}%
-	\clearfield{urlyear}%
-	\clearfield{urlmonth}%
-	\clearfield{urlday}%
-}
 
 % Footcite 
 \newcommand{\fcite}[1]{\cite{#1}\blankfootcite{#1}}
