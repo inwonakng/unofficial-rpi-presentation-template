@@ -21,10 +21,10 @@ Please feel free to suggest any changes (even better) implement your own.
 ![](./screenshots/table.png)
 
 ## Textblocks
-![](./screenshots/textblocks.png)
+![](./screenshots/textbox.png)
 
 ## Using bib
-![](./screenshots/bibtex.png)
+![](./screenshots/bib.png)
 
 ## Table of Contents
 ![](./screenshots/toc.png)
