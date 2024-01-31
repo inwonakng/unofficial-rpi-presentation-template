@@ -6,19 +6,31 @@ Please feel free to suggest any changes (even better) implement your own.
 # Screenshots
 
 ## Title Page
-![](./screenshots/title-page.png)
+![](./screenshots/title.png)
 
 ## Regular Page
-![](./screenshots/plain-page.png)
+![](./screenshots/plain.png)
+
+## List
+![](./screenshots/list.png)
+
+## Figure(s)
+![](./screenshots/figures.png)
+
+## Table(s)
+![](./screenshots/table.png)
 
 ## Textblocks
 ![](./screenshots/textblocks.png)
 
-## Citations
-![](./screenshots/citations.png)
+## Using bib
+![](./screenshots/bibtex.png)
 
 ## Table of Contents
-![](./screenshots/table-of-contents.png)
+![](./screenshots/toc.png)
 
-## Section Overview
-![](./screenshots/outline.png)
+## Section Progress
+![](./screenshots/progress.png)
+
+## Citations
+![](./screenshots/references.png)
