@@ -125,7 +125,7 @@
 		% NOTE: use this if you just want bottom border
 		\draw[draw=RPIred, thick]($(current page.north west)+(0,-0.15\paperheight)$)
 		-- ($(current page.north east)+(0,-0.15\paperheight)$);
-    % \insertnavigation{\paperwidth}
+		% \insertnavigation{\paperwidth}
 		% NOTE: use this if you want a red background
 		% \fill[color=RPIred] (current page.north west)rectangle($(current page.north east) + (0, -0.15\paperheight)$);
 
@@ -249,12 +249,11 @@
 	}%
 	\setunit{\addcomma\space``}%
 	\printfield{labeltitle}%
+	% \setunit{''\addcomma\space}%
 	\setunit{''\addcomma\space}%
 	\textcolor{RPIlightred}{%
 		\printdate%
-	}%
-	\setunit{\addcomma\space}%
-	\textcolor{RPIlightred}{%
+		\setunit{\addcomma\space}%
 		\ifentrytype{misc}{%
 			% if it is misc type
 			\iffieldundef{eprint}{
@@ -297,7 +296,8 @@
 			\printfield{labelnumber}%
 		}%
 		\addspace
-		\shortcite{\thefield{entrykey}}%
+		% \shortcite{\thefield{entrykey}}%
+		\fullcite{\thefield{entrykey}}%
 	}%
 }
 
@@ -309,10 +309,10 @@
 
 % Clear URLDate (Last visited ...)
 \AtEveryBibitem{%
-  \clearfield{urldate}%
-  \clearfield{urlyear}%
-  \clearfield{urlmonth}%
-  \clearfield{urlday}%
+	\clearfield{urldate}%
+	\clearfield{urlyear}%
+	\clearfield{urlmonth}%
+	\clearfield{urlday}%
 }
 
 % Footcite 
