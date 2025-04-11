@@ -145,6 +145,40 @@
 
 \end{frame}
 
+\begin{frame}{Before We Start}
+	\begin{itemize}
+		\item This project uses the \texttt{fontspec} package, which is not supported by the default compiler backend on Overleaf.
+		\item You can change this by following the two steps:
+	\end{itemize}
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{figure}
+			\begin{center}
+				\includegraphics[width=0.95\textwidth]{figures/overleaf-menu.png}
+			\end{center}
+			\caption{Open the menu tab}\label{fig:overleaf-menu}
+		\end{figure}
+	\end{minipage}%
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{figure}
+			\begin{center}
+				\includegraphics[width=0.4\textwidth]{figures/overleaf-compiler.png}
+			\end{center}
+			\caption{Set compiler to XeLaTex}\label{fig:overleaf-compiler}
+		\end{figure}
+	\end{minipage}%
+\end{frame}
+
+\begin{frame}{Style Notes}
+	\begin{itemize}
+		\item Use of \texttt{minipage} is encouraged.
+		      \begin{itemize}
+			      \item Why? because I designed the template with it in mind. The columns env probably works for the most part as well, but it might not.
+		      \end{itemize}
+		\item I tried to use relative values for margins and header/sizes where I could. It should scale well with different page sizes.
+	\end{itemize}
+\end{frame}
+
+
 \section{Table of Contents}
 \begin{frame}
 	\frametitle{Table of Contents}
@@ -283,8 +317,8 @@
 		\item It should be the same as using your regular bibtex.
 		\item To showcase, let's cite some resources~\cite{anglimAnswerImageFull2010,fiandrinoAnswerDesignCustom2013,kormyloAnswerMakeTikz2017} that helped me put this together.
 		\item You can add \texttt{[allowframebreaks]} to the frame to automatically continue the reference list in the text page if you have too many.
-		\item You can use \texttt{\textbackslash tcite} shorthand to use it in \textit{text} mode, i.e. \tcite{anglimAnswerImageFull2010}.
-		\item You can use \texttt{\textbackslash fcite} to add a citation with a footnote on the bottom of the slide.
+		\item You can use \texttt{\textbackslash tcite} (short for textcite) shorthand to use it in \textit{text} mode, i.e. \tcite{anglimAnswerImageFull2010}.
+		\item You can use \texttt{\textbackslash fcite} (short for footcite) to add a citation with a footnote on the bottom of the slide.
 		      \begin{itemize}
 			      \item Note that if you are using \texttt{\textbackslash columns} or \texttt{\textbackslash minipage}, the footnote will by default appear in the bottom of the \textit{environment}, not the slide.
 			      \item You can manually escape this by using just \texttt{\textbackslash cite} or \texttt{\textbackslash tcite} in text and adding a \texttt{\textbackslash bfcite} (blank footcite) outside of these environments.
@@ -292,15 +326,6 @@
 		      \end{itemize}
 	\end{itemize}
 	\bfcite{fiandrinoAnswerDesignCustom2013}
-\end{frame}
-
-\section{Some Notes}
-\begin{frame}
-	\frametitle{Few notes}
-	\begin{itemize}
-		\item I tried to use relative values for margins and header/sizes where I could. It should scale well with different page sizes.
-		\item I compiled this project with xelatex. I do not know if this will compile well on overleaf since the free version has extreme timeouts now.
-	\end{itemize}
 \end{frame}
 
 \begin{frame}[allowframebreaks]
