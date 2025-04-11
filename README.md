@@ -21,44 +21,4 @@ First open the menu
 
 And then select either `LuaLaTeX` or `XeLaTeX` as the compiler.
 
-## Screenshots
-
-### Title Page
-
-![](./screenshots/title.png)
-
-### Regular Page
-
-![](./screenshots/plain.png)
-
-### List
-
-![](./screenshots/list.png)
-
-### Figure(s)
-
-![](./screenshots/figures.png)
-
-### Table(s)
-
-![](./screenshots/table.png)
-
-### Textblocks
-
-![](./screenshots/textbox.png)
-
-### Using bib
-
-![](./screenshots/bib.png)
-
-### Table of Contents
-
-![](./screenshots/toc.png)
-
-### Section Progress
-
-![](./screenshots/progress.png)
-
-### Citations
-
-![](./screenshots/references.png)
+[Preview the template here](./main.pdf)
