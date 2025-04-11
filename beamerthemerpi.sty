@@ -59,6 +59,10 @@
 % \setbeamercolor{palette tertiary}{fg=RPIred,bg=white}
 % \setbeamercolor{palette quaternary}{fg=RPIred,bg=white}
 
+% for blocks like definition
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+
 \setbeamercolor{structure}{fg=RPIred} % itemize, enumerate, etc
 \setbeamercolor{section in toc}{fg=RPIred} % TOC sections
 % \setbeamercolor{subsection in head/foot}{bg=RPIdarkgray,fg=white}
@@ -122,70 +126,66 @@
 %----------------------------------------------------------------------------------------
 % Frame title
 %----------------------------------------------------------------------------------------
+
 \defbeamertemplate*{frametitle}{rpi}[1][]
 {
 	% NOTE: this is following the official powerpoint template. You can uncomment the other one to use a filled red box if you don't like this.
 	% If you do that, make sure the change the frametitle and framesubtitle font colors to white as well.
 	\begin{tikzpicture}[remember picture, overlay]
-
 		% NOTE: use this if you just want bottom border
 		\draw[draw=RPIred, thick]($(current page.north west)+(0,-0.15\paperheight)$)
 		-- ($(current page.north east)+(0,-0.15\paperheight)$);
-		% \insertnavigation{\paperwidth}
+
 		% NOTE: use this if you want a red background
 		% \fill[color=RPIred] (current page.north west)rectangle($(current page.north east) + (0, -0.15\paperheight)$);
-
-		\ifx\insertframesubtitle\@empty%
-			{
-				% if no subtitle, just title centered
-				\node[text width=0.95\paperwidth, align=left]
-				at ($(current page.north)+(0,-0.08\paperheight)$)
-				{ \usebeamercolor[fg]{slidetitle}\usebeamerfont{slidetitle}\insertframetitle };
-			}
-			\else%
-			{
-				\node[text width=0.95\paperwidth, align=left]
-				at ($(current page.north)+(0,-0.05\paperheight)$)
-				{ \usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle };
-				\node[text width=0.95\paperwidth, align=left]
-				at ($(current page.north)+(0,-0.11\paperheight)$)
-				{ \usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle };
-			}%
+		\ifx\insertframesubtitle\@empty
+			% if no subtitle, just title centered
+			\node[anchor=west] at ($(current page.north west)+(0.02\paperwidth,-0.08\paperheight)$)
+			{\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle};
+		\else
+			\node[anchor=west] at ($(current page.north west)+(0.02\paperwidth,-0.05\paperheight)$)
+			{\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle};
+			\node[anchor=west] at ($(current page.north west)+(0.02\paperwidth,-0.11\paperheight)$)
+			{\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle};
 		\fi
 	\end{tikzpicture}
-	\vspace{0.1\paperheight}
+	\vspace{0.08\paperheight}
 	\setbeamertemplate{footline}{}
 }
 
-% \setbeamertemplate{headline}{
-%   \insertnavigation{.3\paperwidth}
-% }
 
 \setbeamertemplate{footline}{
 	\vspace{0.1\paperheight}
 	\begin{tikzpicture}[remember picture, overlay]
-		% red background for footer
-		\fill[color=RPIred] (current page.south west)rectangle($(current page.south east) + (0, 0.1\paperheight)$);
-		% white logo
-		\node
-		at ($(current page.south) + (-0.4\paperwidth,0.05\paperheight)$)
-		{\includegraphics[height=0.06\paperheight]{./logos/Rensselaer-Large-Logo-RGB-White.png}};
-		% shorttitle 
-		% NOTE: Centering makes gaps too wide so I used spaceskip. Wonder if there is a tikz native way to do this.
-		\node[text width=0.95\paperwidth, align=center]
-		at ($(current page.south)+(0,0.05\paperheight)$)
-		{\spaceskip=2pt \usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}\insertshorttitle };
-		% page number
-		\node[text width=0.95\paperwidth, align=right]
-		at ($(current page.south)+(0,0.062\paperheight)$)
-		{ \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber/\inserttotalframenumber };
-		% date
-		\node[text width=0.95\paperwidth, align=right]
-		at ($(current page.south)+(0,0.033\paperheight)$)
-		{ \usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertdate };
-	\end{tikzpicture}
 
+		% red background footer bar
+		\fill[color=RPIred]
+		(current page.south west)
+		rectangle ($(current page.south east) + (0, 0.1\paperheight)$);
+
+		% RPI Logo on the left
+		\node[anchor=west]
+		at ($(current page.south west)+(0.01\paperwidth,0.05\paperheight)$)
+		{\includegraphics[height=0.06\paperheight]{./logos/Rensselaer-Large-Logo-RGB-White.png}};
+
+		% Short title centered
+		\node[anchor=center]
+		at ($(current page.south)+(0,0.05\paperheight)$)
+		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}\insertshorttitle};
+
+		% Page number on top-right of footer
+		\node[anchor=east]
+		at ($(current page.south east)+(-0.01\paperwidth,0.065\paperheight)$)
+		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber/\inserttotalframenumber};
+
+		% Date on bottom-right of footer
+		\node[anchor=east]
+		at ($(current page.south east)+(-0.01\paperwidth,0.035\paperheight)$)
+		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertdate};
+
+	\end{tikzpicture}
 }
+
 
 %----------------------------------------------------------------------------------------
 % Items (Lists)
@@ -262,7 +262,7 @@
 	\clearfield{urlyear}%
 	\clearfield{urlmonth}%
 	\clearfield{urlday}%
-  \clearfield{pages}%
+	\clearfield{pages}%
 }
 
 % A shorter version of \fullcite that doesn't include stuff like urldate
