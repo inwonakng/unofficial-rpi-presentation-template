@@ -3,6 +3,8 @@
 Refer to `main.tex` for example usage.
 Please feel free to suggest any changes (even better) implement your own.
 
+[Preview the template here](./main.pdf)
+
 ## Usage
 
 Copy the `beamerthemeRPI.sty` file to the directory of your `.tex` file.
@@ -20,5 +22,3 @@ First open the menu
 ![](./figures/overleaf-compiler.png)
 
 And then select either `LuaLaTeX` or `XeLaTeX` as the compiler.
-
-[Preview the template here](./main.pdf)
