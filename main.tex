@@ -175,6 +175,7 @@
 			      \item Why? because I designed the template with it in mind. The columns env probably works for the most part as well, but it might not.
 		      \end{itemize}
 		\item I tried to use relative values for margins and header/sizes where I could. It should scale well with different page sizes.
+    \item Just use \texttt{\\ref} for references. it's pretty annoying to get cleveref to work with beamer~\cite{cleveref_beamer}, and it doesn't look like there will be a nice way any time soon~\cite{}
 	\end{itemize}
 \end{frame}
 
@@ -310,7 +311,19 @@
 	\end{minipage}
 \end{frame}
 
-\section{Theorem/Definition/Algorithms}
+\section{Equation/Theorem/Definition/Algorithms}
+
+\subsection{Equations}
+\begin{frame}{Equations}
+  \begin{equation}
+    \label{eq:example}
+    \mathcal{L}_{\text{CE}} = \sum_{c=1}^{C} \log \cfrac{\exp(x_{n,c})}{\sum_{i=1}^{C} \exp(x_{n,i})}
+  \end{equation}
+  \begin{itemize}
+    \item Equation~\ref{eq:example} shows the cross-entropy loss.
+    \item You can also use inline equations like this: $x_{n,c}$.
+  \end{itemize}
+\end{frame}
 
 \subsection{Definitions}
 \begin{frame}{Definitions}
@@ -322,7 +335,6 @@
 			\item If you don't like the colors, you can change \texttt{block title} and  \texttt{block body} of \texttt{setbeamercolor} in the \texttt{.sty} file.\end{itemize}
 	\end{definition}
 \end{frame}
-
 
 
 \section{Using Bibtex}

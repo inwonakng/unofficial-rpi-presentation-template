@@ -7,14 +7,14 @@
 % https://tex.stackexchange.com/questions/395530/make-tikz-nodes-flush-with-slide-edges-in-beamer-title-slide
 
 % Requirement
-\usepackage{tikz}
+\RequirePackage{tikz}
 \usetikzlibrary{calc}
 
-\usepackage[most]{tcolorbox}
-\usepackage{changepage}
-\usepackage{listings}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{changepage}
+\RequirePackage{listings}
 
-\usepackage[style=ieee,backend=bibtex,citetracker=true,maxcitenames=2,mincitenames=1]{biblatex}
+\RequirePackage[style=ieee,backend=bibtex,citetracker=true,maxcitenames=2,mincitenames=1]{biblatex}
 
 % NOTE: uncomment if you want the navigations
 \setbeamertemplate{navigation symbols}{}
@@ -22,9 +22,11 @@
 \setbeamertemplate{blocks}[rounded][shadow=true]
 
 % font
-\usepackage{fontspec}
+\RequirePackage{fontspec}
+\RequirePackage{unicode-math}
+
 \setsansfont{Arial}
-\usefonttheme[onlymath]{serif}
+\usefonttheme{professionalfonts} % prevents Beamer from overriding font settings
 
 %----------------------------------------------------------------------------------------
 % Custom fonts
@@ -208,7 +210,7 @@
 	right=4pt,
 	top=4pt,
 	bottom=4pt,
-	fonttitle=\scshape,
+	fonttitle=\bfseries,
 	colback=white,
 	colbacktitle=RPIred,
 	colframe=RPIred,
@@ -223,7 +225,7 @@
 	right=4pt,
 	top=4pt,
 	bottom=4pt,
-	fonttitle=\scshape,
+	fonttitle=\bfseries,
 	colback=white,
 	colbacktitle=RPIdarkgray,
 	colframe=RPIdarkgray,
