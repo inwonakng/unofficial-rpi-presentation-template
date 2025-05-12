@@ -1,3 +1,65 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemerpi}[\the\year/\two@digits{\month}/\two@digits{\day} RPI Beamer Theme (v2 with footertitle options)]
+
+% ============================
+% === Footer Title Options ===
+% ============================
+
+% Boolean flags for different modes
+\newif\iffootertitlemode@is@shorttitle
+\newif\iffootertitlemode@is@onlysection
+\newif\iffootertitlemode@is@sectionandsubsection
+\newif\iffootertitlemode@is@onlysubsection
+
+% Helper command to set all mode flags to false
+\newcommand{\rpifootertitle@resetallmodes}{%
+	\footertitlemode@is@shorttitlefalse
+	\footertitlemode@is@onlysectionfalse
+	\footertitlemode@is@sectionandsubsectionfalse
+	\footertitlemode@is@onlysubsectionfalse
+}
+
+% Set default mode
+\rpifootertitle@resetallmodes
+\footertitlemode@is@shorttitletrue % Default is shorttitle
+
+% Declare the 'footertitlemode' option
+% This will set the appropriate boolean flag.
+\DeclareOptionBeamer{footertitlemode}{%
+	\rpifootertitle@resetallmodes % First, clear any existing mode
+	% Compare the provided value and set the corresponding flag
+	\ifstrequal{#1}{shorttitle}{\footertitlemode@is@shorttitletrue}{%
+		\ifstrequal{#1}{onlysection}{\footertitlemode@is@onlysectiontrue}{%
+			\ifstrequal{#1}{sectionandsubsection}{\footertitlemode@is@sectionandsubsectiontrue}{%
+				\ifstrequal{#1}{onlysubsection}{\footertitlemode@is@onlysubsectiontrue}{%
+					% If the value is unknown, default to shorttitle and issue a warning
+					\PackageWarning{beamerthemerpi}{Unknown 'footertitlemode' value: '#1'. Defaulting to 'shorttitle'.}%
+					\footertitlemode@is@shorttitletrue % Fallback to default
+				}}}}%
+}
+
+% Process options passed to \documentclass or \usetheme
+\ProcessOptionsBeamer
+
+% --- Frame-Specific Footer Title Override ---
+% Define \rpi@footertitle@overridetext to be truly empty,
+% making it \ifx-equivalent to \@empty (which is \def\@empty{})
+\def\rpi@footertitle@overridetext{}
+
+% User command to set the override. It persists until cleared.
+\newcommand{\footertitleoverride}[1]{%
+	\gdef\rpi@footertitle@overridetext{#1}%
+}
+
+% User command to manually clear the override.
+\newcommand{\clearfootertitleoverride}{%
+	\gdef\rpi@footertitle@overridetext{}% % Sets it back to a truly empty macro
+}
+
+% ==============================================
+% === End of Footer Title Options & Override ===
+% ==============================================
+
 \mode<presentation>
 
 % main references:
@@ -112,6 +174,10 @@
 		{
 			\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle
 			\vfill
+			\ifx\insertsubtitle\@empty\else %
+				\usebeamercolor[fg]{title}\usebeamerfont{subtitle}\insertsubtitle %
+				\vfill %
+			\fi %
 		};
 
 		\node[text width=0.95\paperwidth, align=left]
@@ -173,17 +239,90 @@
 		% Short title centered
 		\node[anchor=center]
 		at ($(current page.south)+(0,0.05\paperheight)$)
-		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}\insertshorttitle};
+		{%
+			\usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}%
+			% For debugging, you can uncomment this to see the raw meaning in the .log file:
+			% \typeout{Override text meaning: \meaning\rpi@footertitle@overridetext}
+			% \typeout{Comparison with \@empty meaning: \meaning\@empty}
+
+			% 1. Check for frame-specific override
+			\ifx\rpi@footertitle@overridetext\@empty
+				% No override, so use the theme option based on boolean flags
+				\iffootertitlemode@is@onlysection
+					\ifx\sectionname\@empty\else\insertsection\fi % Display only if sectionname is not empty
+				\else
+					\iffootertitlemode@is@sectionandsubsection
+						\ifx\insertsection\@empty\else % Section exists
+							\ifx\insertsubsection\@empty % If there's no subsection
+								\insertsection % Show only section
+							\else % Both section and subsection exist
+								\insertsection~\mbox{--}~\insertsubsection
+							\fi
+						\fi
+					\else
+						\iffootertitlemode@is@onlysubsection
+							\ifx\subsectionname\@empty\else\insertsubsection\fi % Display only if subsectionname is not empty
+						\else % This branch covers \iffootertitlemode@is@shorttitle (default)
+							% or any other unexpected state (acts as a safe fallback)
+							\insertshorttitle
+						\fi\fi\fi % End of the nested \if conditions
+			\else
+				% Override is set: display it.
+				% It persists until \clearfootertitleoverride is called.
+				\rpi@footertitle@overridetext
+			\fi
+		};
+		% {%
+		% 	\usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}%
+		% 	% 1. Check for frame-specific override
+		%     "\rpi@footertitle@overridetext" "\rpi@footertitlemode@val"
+		% 	\ifx\rpi@footertitle@overridetext\@empty
+		%       NOOV
+		% 		% No override, so use the theme option stored in \rpi@footertitlemode@val
+		% 		\ifstrequal{\rpi@footertitlemode@val}{onlysection}{%
+		% 			% Mode: onlysection
+		% 			\ifx\sectionname\@empty\else\insertsection\fi
+		% 		}{%
+		%         NOTONLYSEC "\rpi@footertitlemode@val"
+		% 			\ifstrequal{\rpi@footertitlemode@val}{sectionandsubsection}{%
+		% 				% Mode: sectionandsubsection
+		% 				\ifx\sectionname\@empty % No section
+		% 					\ifx\subsectionname\@empty\else\insertsubsection\fi % Show subsection if it exists
+		% 				\else % Section exists
+		% 					\ifx\subsectionname\@empty % No subsection
+		% 						\insertsection % Show only section
+		% 					\else % Both section and subsection exist
+		% 						\insertsection~\mbox{--}~\insertsubsection
+		% 					\fi
+		% 				\fi
+		% 			}{%
+		% 				\ifstrequal{\rpi@footertitlemode@val}{onlysubsection}{%
+		% 					% Mode: onlysubsection
+		% 					\ifx\subsectionname\@empty\else\insertsubsection\fi
+		% 				}{%
+		% 					% Default mode: 'shorttitle' (or any unrecognised \rpi@footertitlemode@val)
+		% 					\insertshorttitle
+		% 				}}}%
+		% 	\else
+		%       HAVEOVERIDE "\rpi@footertitle@overridetext"
+		% 		% Override is set: display it and then clear it for the next frame.
+		% 		\rpi@footertitle@overridetext
+		% 		% \global\let\rpi@footertitle@overridetext\@empty % Clear after use
+		% 	\fi
+		% };
+		%   {
+		% 	\usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}\insertshorttitle
+		% };
 
 		% Page number on top-right of footer
 		\node[anchor=east]
 		at ($(current page.south east)+(-0.01\paperwidth,0.065\paperheight)$)
-		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber/\inserttotalframenumber};
+		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber{}/\inserttotalframenumber{}};
 
 		% Date on bottom-right of footer
 		\node[anchor=east]
 		at ($(current page.south east)+(-0.01\paperwidth,0.035\paperheight)$)
-		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertdate};
+		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertdate{}};
 
 	\end{tikzpicture}
 }
