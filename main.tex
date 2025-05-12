@@ -9,6 +9,7 @@
 
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule for better rules in tables
 
+% \usetheme[footertitlemode=sectionandsubsection]{rpi}
 \usetheme{rpi}
 \addbibresource{references.bib}
 %----------------------------------------------------------------------------------------
@@ -17,7 +18,7 @@
 
 % \title[A Short Title for Your Slides]{A Very Long and Multi-Lined Full Presentation Title That You Probably Shouldn't Use Because Titles Should not be This Long, but I Will Do It For Debugging} 
 \title[A Short Title for Your Slides]{(Unofficial)\\RPI Beamer Presentation Template}
-\subtitle{Optional Subtitle} % Presentation subtitle, remove this command if a subtitle isn't required
+\subtitle{And an optional subtitle} % Presentation subtitle, remove this command if a subtitle isn't required
 \author[]{Inwon Kang \and StackOverflow} % Presenter name(s), the optional parameter can contain a shortened version to appear on the bottom of every slide, while the main parameter will appear on the title slide
 \institute[RPI]{Department of Computer Science}
 
@@ -94,7 +95,6 @@
 
 \begin{frame}[noframenumbering]
 	\frametitle{Presentation Overview} % Slide title, remove this command for no title
-
 	% NOTE: Two column version
 	\begin{columns}[t]
 		\begin{column}{.05\textwidth}
@@ -175,7 +175,7 @@
 			      \item Why? because I designed the template with it in mind. The columns env probably works for the most part as well, but it might not.
 		      \end{itemize}
 		\item I tried to use relative values for margins and header/sizes where I could. It should scale well with different page sizes.
-    \item Just use \texttt{\\ref} for references. it's pretty annoying to get cleveref to work with beamer~\cite{cleveref_beamer}, and it doesn't look like there will be a nice way any time soon~\cite{}
+		\item Just use \texttt{\\ref} for references. it's pretty annoying to get cleveref to work with beamer~\cite{cleveref_beamer}, and it doesn't look like there will be a nice way any time soon~\cite{}
 	\end{itemize}
 \end{frame}
 
@@ -192,7 +192,7 @@
 \end{frame}
 
 
-\section{List/Figure/Table/Definition}
+\section{List/Figure/Table}
 \subsection{Lists}
 \begin{frame}
 	\frametitle{Using lists}
@@ -315,19 +315,19 @@
 
 \subsection{Equations}
 \begin{frame}{Equations}
-  \begin{equation}
-    \label{eq:example}
-    \mathcal{L}_{\text{CE}} = \sum_{c=1}^{C} \log \cfrac{\exp(x_{n,c})}{\sum_{i=1}^{C} \exp(x_{n,i})}
-  \end{equation}
-  \begin{itemize}
-    \item Equation~\ref{eq:example} shows the cross-entropy loss.
-    \item You can also use inline equations like this: $x_{n,c}$.
-  \end{itemize}
+	\begin{equation}
+		\label{eq:example}
+		\mathcal{L}_{\text{CE}} = \sum_{c=1}^{C} \log \cfrac{\exp(x_{n,c})}{\sum_{i=1}^{C} \exp(x_{n,i})}
+	\end{equation}
+	\begin{itemize}
+		\item Equation~\ref{eq:example} shows the cross-entropy loss.
+		\item You can also use inline equations like this: $x_{n,c}$.
+	\end{itemize}
 \end{frame}
 
 \subsection{Definitions}
 \begin{frame}{Definitions}
-	\begin{definition}{A definition}
+	\begin{definition}
 		This is a definition.
 		\begin{itemize}
 			\item It can be used to define something.
@@ -353,6 +353,33 @@
 		      \end{itemize}
 	\end{itemize}
 	\bfcite{fiandrinoAnswerDesignCustom2013}
+\end{frame}
+
+
+\section{Advanced Controls}
+\subsection{Footer Title Option/Override}
+\begin{frame}
+	\frametitle{Footer Title Option/Override}
+  \footertitleoverride{A New Footer title}
+	\begin{itemize}
+    \item The default behavior is to use the shorttitle (the stuff defined in \texttt{[]} after \texttt{\textbackslash title})
+    \item You can change this by specifying an option when importing the template (like \texttt{\textbackslash usetheme[<OPTION\_HERE>]\{rpi\}}). Valid options are:
+      \begin{itemize}
+        \item \texttt{footertitlemode=onlysection}
+        \item \texttt{footertitlemode=sectionandsubsection}
+        \item \texttt{footertitlemode=onlysubsection}
+      \end{itemize}
+    \item OR you can override it by using \texttt{\textbackslash overridefootertitle\{<YOUR\_TITLE\_HERE>\}}. This will override the title for the rest of the presentation, until you call \texttt{\textbackslash clearoverridefootertitle}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Another slide with custom footer title}
+\end{frame}
+
+\begin{frame}
+	\clearfootertitleoverride
+	\frametitle{Placeholder slide to show resetting the footer title}
 \end{frame}
 
 \begin{frame}[allowframebreaks]
