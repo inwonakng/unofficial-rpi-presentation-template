@@ -88,6 +88,7 @@
 \RequirePackage{unicode-math}
 
 \setsansfont{Arial}
+% \setsansfont{Geist}
 \usefonttheme{professionalfonts} % prevents Beamer from overriding font settings
 
 %----------------------------------------------------------------------------------------
@@ -446,10 +447,10 @@
 }
 
 \DeclareCiteCommand{\shortcite}%
-{\usebibmacro{cite:init}}
+{}
 {\usebibmacro{shortcite}}
 {}
-{\usebibmacro{cite:dump}}
+{}
 
 % creates a blank citation that adds to the footnote
 \newbibmacro*{blankfootcite}{%
@@ -467,10 +468,10 @@
 }
 
 \DeclareCiteCommand{\blankfootcite}%
-{\usebibmacro{cite:init}}
+{}
 {\usebibmacro{blankfootcite}}
 {}
-{\usebibmacro{cite:dump}}
+{}
 
 % Footcite 
 \newcommand{\fcite}[1]{\cite{#1}\blankfootcite{#1}}
