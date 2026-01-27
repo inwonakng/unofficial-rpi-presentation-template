@@ -5,20 +5,37 @@ Please feel free to suggest any changes (even better) implement your own.
 
 [Preview the template here](./main.pdf)
 
-## Usage
+---
 
-Copy the `beamerthemeRPI.sty` file to the directory of your `.tex` file.
-Also copy the `logos` to the same directory (that the `tex` file lives in).
-This is required for because the logos need to be rendered at the footer of each slide.
+## Setting up
 
-You also need to use `lualatex` compiler instead of `pdflatex` because of the font. (Arial doesn't work on pdflatex?)
+- You need the `beamerthemerpi.sty` file and `logos` and `fonts` directory to use this template.
+  - The logos and fonts can also be directly downloaded from [the RPI brand website](https://brand.rpi.edu). For the fonts, just download the desktop variant (`*.otf` files).
+- You also need to use `lualatex` compiler instead of `pdflatex` because of the font. (Arial doesn't work on pdflatex?)
 
-If you are on overleaf, you can do this:
+**Local**
 
-![](./figures/overleaf-menu.png)
+1. Clone the repository.
 
-First open the menu
+   ```bash
+   git clone https://github.com/inwonakng/unofficial-rpi-presentation-template
+   ```
 
-![](./figures/overleaf-compiler.png)
+2. Set xelatex or lualatex as the default compiler for latexmk.
+   - I use the following `.latexmkrc` file to change the compiler to `xelatex` (latexmk to compile my documents locally.). You can also keep one in `~/.latexmkrc` to make it global (local will override global).
 
-And then select either `LuaLaTeX` or `XeLaTeX` as the compiler.
+   ```latexmkrc
+   # $pdf_mode = 4; # sets lualatex to default engine.
+   $pdf_mode = 5; # sets xelatex to default engine.
+   $dvi_mode = 0;
+   ```
+
+3. Copy over the `fonts` and `logos` directories to the root of your latex project.
+
+**Overleaf**
+
+- Start by cloning [this project](https://www.overleaf.com/read/yshxrvnkbdjz#48311c). (we can't upload unofficial templates to overleaf anymore).
+- double check the compiler checking this option in the menu:
+  ![](./figures/overleaf-compiler.png)
+  ![](./figures/overleaf-menu.png).
+  - if not already selected, select either `LuaLaTeX` or `XeLaTeX` as the compiler.

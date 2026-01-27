@@ -87,22 +87,37 @@
 \RequirePackage{fontspec}
 \RequirePackage{unicode-math}
 
-\setsansfont{Arial}
-% \setsansfont{Geist}
+\setsansfont{RPIGeist}[
+  Path=./fonts/,
+  Extension=.otf,
+  UprightFont=*-Regular,
+  BoldFont=*-Bold,
+  ItalicFont=*-RegularItalic,
+  BoldItalicFont=*-BoldItalic
+]
+\setmonofont{RPIGeistMono}[
+  Path=./fonts/,
+  Extension=.otf,
+  UprightFont=*-Regular,
+  BoldFont=*-Bold,
+  ItalicFont=*-Italic,
+  BoldItalicFont=*-BoldItalic
+]
+
 \usefonttheme{professionalfonts} % prevents Beamer from overriding font settings
 
 %----------------------------------------------------------------------------------------
 % Custom fonts
 %----------------------------------------------------------------------------------------
-\setbeamerfont{title}{size=\LARGE,series=\bfseries,parent=structure}
-\setbeamerfont{subtitle}{size=\scriptsize,series=\bfseries,parent=structure}
-\setbeamerfont{author}{size=\scriptsize,parent=structure}
+\setbeamerfont{title}{size=\LARGE,parent=structure}
+\setbeamerfont{subtitle}{size=\normalsize,parent=structure}
+\setbeamerfont{author}{size=\normalsize,parent=structure}
 \setbeamerfont{institute}{size=\scriptsize,parent=structure}
 \setbeamerfont{date}{size=\scriptsize,parent=structure}
 \setbeamerfont{frametitle}{size=\Large,parent=structure}
 \setbeamerfont{framesubtitle}{size=\normalsize,parent=structure}
 \setbeamerfont{framefooter}{size=\tiny,parent=structure}
-\setbeamerfont{framefootertitle}{size=\scriptsize,parent=structure}
+\setbeamerfont{framefootertitle}{size=\small,parent=structure}
 % \setbeamerfont{footnote}{size=\tiny,shape=\itshape}
 \setbeamerfont{footnote}{size=\tiny}
 \setbeamerfont{subsection in toc}{size=\small}
@@ -111,18 +126,11 @@
 % RPI Colors
 %----------------------------------------------------------------------------------------
 \definecolor{RPIred}{RGB}{214,0,28} % RPI Red (primary)
-% \definecolor{blue}{RGB}{0,0,200} % RPI Red (primary)
 \definecolor{RPIdarkgray}{RGB}{84, 88, 90} % RPI Dark Gray (secondary)
 \definecolor{RPIlightgray}{RGB}{158, 162, 162} % RPI light Grey (ternary)
 
 \definecolor{RPIlightred}{RGB}{210, 98, 110} % RPI light red (quaternary)
 \definecolor{darkergray}{RGB}{66, 66, 66}
-
-
-% \setbeamercolor{palette primary}{fg=RPIred,bg=white}
-% \setbeamercolor{palette secondary}{fg=RPIred,bg=white}
-% \setbeamercolor{palette tertiary}{fg=RPIred,bg=white}
-% \setbeamercolor{palette quaternary}{fg=RPIred,bg=white}
 
 % for blocks like definition
 \setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg!75!black}
@@ -132,10 +140,10 @@
 \setbeamercolor{section in toc}{fg=RPIred} % TOC sections
 % \setbeamercolor{subsection in head/foot}{bg=RPIdarkgray,fg=white}
 \setbeamercolor{author}{fg=white}
-\setbeamercolor{title}{fg=white}
-\setbeamercolor{frametitle}{fg=RPIdarkgray}
-\setbeamercolor{framesubtitle}{fg=RPIlightgray}
-\setbeamercolor{framefooter}{fg=white}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{framesubtitle}{fg=RPIdarkgray}
+\setbeamercolor{framefooter}{fg=black}
 \setbeamercolor{section in head/foot}{fg=red, bg=green}
 
 %----------------------------------------------------------------------------------------
@@ -159,19 +167,11 @@
 \defbeamertemplate*{title page}{rpi}[1][]
 {
 	\begin{tikzpicture}[remember picture, overlay]
-		\node
-		at ($(current page.north) + (-0.25\paperwidth,-0.22\paperheight)$)
-		{\includegraphics[height=0.17\paperheight]{./logos/Rensselaer-Large-Logo-with-Tagline-CMYK-TwoColor.png}};
-		\fill[color=RPIred] (current page.west)rectangle(current page.south east);
 		\node[
-			% text centered,
 			text width=0.95\paperwidth,
 			align=flush left,
-			% text depth=1.15\paperheight,
-			% text height=0.15\paperheight,
-			% draw=green,
 		]
-		at ($(current page.south) + (0, 0.3\paperheight)$)
+		at ($(current page.south) + (0.05\paperwidth, 0.6\paperheight)$)
 		{
 			\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle
 			\vfill
@@ -189,6 +189,20 @@
 			\hfill
 			\usebeamercolor[fg]{author}\usebeamerfont{author}\insertdate%
 		};
+
+		% RPI Logo on the left
+		\node[anchor=west]
+		at ($(current page.south west)+(0.01\paperwidth,0.060\paperheight)$)
+		% {\includegraphics[height=0.06\paperheight]{./logos/Rensselaer-Large-Logo-RGB-White.png}};
+		{\includegraphics[height=0.08\paperheight]{./logos/RPI_Logo_Solid_Black.pdf}};
+
+		% Date on second left
+		\node[anchor=east]
+		at ($(current page.south west)+(0.55\paperwidth,0.035\paperheight)$)
+		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}\insertdate{}};
+
+
+
 	\end{tikzpicture}
 }
 
@@ -227,103 +241,21 @@
 	\vspace{0.1\paperheight}
 	\begin{tikzpicture}[remember picture, overlay]
 
-		% red background footer bar
-		\fill[color=RPIred]
-		(current page.south west)
-		rectangle ($(current page.south east) + (0, 0.1\paperheight)$);
-
 		% RPI Logo on the left
 		\node[anchor=west]
-		at ($(current page.south west)+(0.01\paperwidth,0.05\paperheight)$)
-		{\includegraphics[height=0.06\paperheight]{./logos/Rensselaer-Large-Logo-RGB-White.png}};
+		at ($(current page.south west)+(0.010\paperwidth,0.035\paperheight)$)
+		% {\includegraphics[height=0.06\paperheight]{./logos/Rensselaer-Large-Logo-RGB-White.png}};
+		{\includegraphics[height=0.03\paperheight]{./logos/RPI_Logo_Solid_Black.pdf}};
 
-		% Short title centered
-		\node[anchor=center]
-		at ($(current page.south)+(0,0.05\paperheight)$)
-		{%
-			\usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}%
-			% For debugging, you can uncomment this to see the raw meaning in the .log file:
-			% \typeout{Override text meaning: \meaning\rpi@footertitle@overridetext}
-			% \typeout{Comparison with \@empty meaning: \meaning\@empty}
-
-			% 1. Check for frame-specific override
-			\ifx\rpi@footertitle@overridetext\@empty
-				% No override, so use the theme option based on boolean flags
-				\iffootertitlemode@is@onlysection
-					\ifx\sectionname\@empty\else\insertsection\fi % Display only if sectionname is not empty
-				\else
-					\iffootertitlemode@is@sectionandsubsection
-						\ifx\insertsection\@empty\else % Section exists
-							\ifx\insertsubsection\@empty % If there's no subsection
-								\insertsection % Show only section
-							\else % Both section and subsection exist
-								\insertsection~\mbox{--}~\insertsubsection
-							\fi
-						\fi
-					\else
-						\iffootertitlemode@is@onlysubsection
-							\ifx\subsectionname\@empty\else\insertsubsection\fi % Display only if subsectionname is not empty
-						\else % This branch covers \iffootertitlemode@is@shorttitle (default)
-							% or any other unexpected state (acts as a safe fallback)
-							\insertshorttitle
-						\fi\fi\fi % End of the nested \if conditions
-			\else
-				% Override is set: display it.
-				% It persists until \clearfootertitleoverride is called.
-				\rpi@footertitle@overridetext
-			\fi
-		};
-		% {%
-		% 	\usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}%
-		% 	% 1. Check for frame-specific override
-		%     "\rpi@footertitle@overridetext" "\rpi@footertitlemode@val"
-		% 	\ifx\rpi@footertitle@overridetext\@empty
-		%       NOOV
-		% 		% No override, so use the theme option stored in \rpi@footertitlemode@val
-		% 		\ifstrequal{\rpi@footertitlemode@val}{onlysection}{%
-		% 			% Mode: onlysection
-		% 			\ifx\sectionname\@empty\else\insertsection\fi
-		% 		}{%
-		%         NOTONLYSEC "\rpi@footertitlemode@val"
-		% 			\ifstrequal{\rpi@footertitlemode@val}{sectionandsubsection}{%
-		% 				% Mode: sectionandsubsection
-		% 				\ifx\sectionname\@empty % No section
-		% 					\ifx\subsectionname\@empty\else\insertsubsection\fi % Show subsection if it exists
-		% 				\else % Section exists
-		% 					\ifx\subsectionname\@empty % No subsection
-		% 						\insertsection % Show only section
-		% 					\else % Both section and subsection exist
-		% 						\insertsection~\mbox{--}~\insertsubsection
-		% 					\fi
-		% 				\fi
-		% 			}{%
-		% 				\ifstrequal{\rpi@footertitlemode@val}{onlysubsection}{%
-		% 					% Mode: onlysubsection
-		% 					\ifx\subsectionname\@empty\else\insertsubsection\fi
-		% 				}{%
-		% 					% Default mode: 'shorttitle' (or any unrecognised \rpi@footertitlemode@val)
-		% 					\insertshorttitle
-		% 				}}}%
-		% 	\else
-		%       HAVEOVERIDE "\rpi@footertitle@overridetext"
-		% 		% Override is set: display it and then clear it for the next frame.
-		% 		\rpi@footertitle@overridetext
-		% 		% \global\let\rpi@footertitle@overridetext\@empty % Clear after use
-		% 	\fi
-		% };
-		%   {
-		% 	\usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}\insertshorttitle
-		% };
-
-		% Page number on top-right of footer
+		% Date on second left
 		\node[anchor=east]
-		at ($(current page.south east)+(-0.01\paperwidth,0.065\paperheight)$)
-		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber{}/\inserttotalframenumber{}};
+		at ($(current page.south west)+(0.40\paperwidth,0.035\paperheight)$)
+		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertdate{}};
 
-		% Date on bottom-right of footer
+		% Page number on left
 		\node[anchor=east]
 		at ($(current page.south east)+(-0.01\paperwidth,0.035\paperheight)$)
-		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertdate{}};
+		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefooter}\insertframenumber{}/\inserttotalframenumber{}};
 
 	\end{tikzpicture}
 }
