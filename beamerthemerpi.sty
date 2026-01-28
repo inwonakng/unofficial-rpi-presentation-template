@@ -88,20 +88,20 @@
 \RequirePackage{unicode-math}
 
 \setsansfont{RPIGeist}[
-  Path=./fonts/,
-  Extension=.otf,
-  UprightFont=*-Regular,
-  BoldFont=*-Bold,
-  ItalicFont=*-RegularItalic,
-  BoldItalicFont=*-BoldItalic
+	Path=./fonts/,
+	Extension=.otf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-RegularItalic,
+	BoldItalicFont=*-BoldItalic
 ]
 \setmonofont{RPIGeistMono}[
-  Path=./fonts/,
-  Extension=.otf,
-  UprightFont=*-Regular,
-  BoldFont=*-Bold,
-  ItalicFont=*-Italic,
-  BoldItalicFont=*-BoldItalic
+	Path=./fonts/,
+	Extension=.otf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
 ]
 
 \usefonttheme{professionalfonts} % prevents Beamer from overriding font settings
@@ -139,7 +139,7 @@
 \setbeamercolor{structure}{fg=RPIred} % itemize, enumerate, etc
 \setbeamercolor{section in toc}{fg=RPIred} % TOC sections
 % \setbeamercolor{subsection in head/foot}{bg=RPIdarkgray,fg=white}
-\setbeamercolor{author}{fg=white}
+\setbeamercolor{author}{fg=black}
 \setbeamercolor{title}{fg=black}
 \setbeamercolor{frametitle}{fg=black}
 \setbeamercolor{framesubtitle}{fg=RPIdarkgray}
@@ -167,11 +167,18 @@
 \defbeamertemplate*{title page}{rpi}[1][]
 {
 	\begin{tikzpicture}[remember picture, overlay]
+
+		% the new pattern thing on the right side. need to rotate as well.
+		\node[anchor=north east]
+		at ($(current page.north east) + (0.008\paperwidth,0.014\paperheight)$)
+    {\includegraphics[height=\paperheight]{./logos/RPI_bar_from_ppt.pdf}};
+
+		% title text
 		\node[
 			text width=0.95\paperwidth,
 			align=flush left,
 		]
-		at ($(current page.south) + (0.05\paperwidth, 0.6\paperheight)$)
+		at ($(current page.south) + (0.05\paperwidth, 0.65\paperheight)$)
 		{
 			\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle
 			\vfill
@@ -181,27 +188,23 @@
 			\fi %
 		};
 
+		% following author text
 		\node[text width=0.95\paperwidth, align=left]
-		at ($(current page.south) + (0, 0.05\paperheight)$)
+		at ($(current page.south) + (0.05\paperwidth, 0.4\paperheight)$)
 		{
 			\usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor%
 			~--~\usebeamercolor[fg]{author}\usebeamerfont{author}\insertinstitute%
-			\hfill
-			\usebeamercolor[fg]{author}\usebeamerfont{author}\insertdate%
 		};
 
-		% RPI Logo on the left
+		% RPI Logo on the bottom right
 		\node[anchor=west]
 		at ($(current page.south west)+(0.01\paperwidth,0.060\paperheight)$)
-		% {\includegraphics[height=0.06\paperheight]{./logos/Rensselaer-Large-Logo-RGB-White.png}};
 		{\includegraphics[height=0.08\paperheight]{./logos/RPI_Logo_Solid_Black.pdf}};
 
-		% Date on second left
+		% Date on bottom left
 		\node[anchor=east]
-		at ($(current page.south west)+(0.55\paperwidth,0.035\paperheight)$)
+		at ($(current page.south west)+(0.45\paperwidth,0.035\paperheight)$)
 		{\usebeamercolor[fg]{framefooter}\usebeamerfont{framefootertitle}\insertdate{}};
-
-
 
 	\end{tikzpicture}
 }
@@ -244,7 +247,6 @@
 		% RPI Logo on the left
 		\node[anchor=west]
 		at ($(current page.south west)+(0.010\paperwidth,0.035\paperheight)$)
-		% {\includegraphics[height=0.06\paperheight]{./logos/Rensselaer-Large-Logo-RGB-White.png}};
 		{\includegraphics[height=0.03\paperheight]{./logos/RPI_Logo_Solid_Black.pdf}};
 
 		% Date on second left

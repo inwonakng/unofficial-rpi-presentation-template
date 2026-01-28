@@ -23,6 +23,8 @@ Please feel free to suggest any changes (even better) implement your own.
 
 2. Set xelatex or lualatex as the default compiler for latexmk.
    - I use the following `.latexmkrc` file to change the compiler to `xelatex` (latexmk to compile my documents locally.). You can also keep one in `~/.latexmkrc` to make it global (local will override global).
+   - The logos are also from the website, but I converted them to PDF for convenience (there's probably ways to use SVG in latex, but I don't want to deal with that).
+   - The bar is *not* directly from the brand website. I had to rip it out of the pptx template file because the SVG they provide is too short and it is not nicely designed to extend.
 
    ```latexmkrc
    # $pdf_mode = 4; # sets lualatex to default engine.

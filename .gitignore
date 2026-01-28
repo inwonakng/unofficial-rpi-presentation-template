@@ -2,3 +2,4 @@ aux/
 out/
 .DS_Store
 indent.log
+scripts/update-main.sh
