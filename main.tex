@@ -150,29 +150,31 @@
 		\item This project uses the \texttt{fontspec} package, which is not supported by the default compiler backend on Overleaf.
 		\item You can change this by following the two steps:
 	\end{itemize}
-	\begin{minipage}[t]{0.48\textwidth}
-		\begin{figure}
-			\begin{center}
-				\includegraphics[width=0.95\textwidth]{figures/overleaf-menu.png}
-			\end{center}
-			\caption{Open the menu tab}\label{fig:overleaf-menu}
-		\end{figure}
-	\end{minipage}%
-	\begin{minipage}[t]{0.48\textwidth}
-		\begin{figure}
-			\begin{center}
-				\includegraphics[width=0.4\textwidth]{figures/overleaf-compiler.png}
-			\end{center}
-			\caption{Set compiler to XeLaTex}\label{fig:overleaf-compiler}
-		\end{figure}
-	\end{minipage}%
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			\begin{figure}
+				\begin{center}
+					\includegraphics[width=0.95\textwidth]{figures/overleaf-menu.png}
+				\end{center}
+				\caption{Open the menu tab}\label{fig:overleaf-menu}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{figure}
+				\begin{center}
+					\includegraphics[width=0.4\textwidth]{figures/overleaf-compiler.png}
+				\end{center}
+				\caption{Set compiler to XeLaTex}\label{fig:overleaf-compiler}
+			\end{figure}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}{Style Notes}
 	\begin{itemize}
-		\item Use of \texttt{minipage} is encouraged.
+		\item Use of \texttt{columns} is encouraged.\footnote{I used to say minipages, but I changed my mind.}
 		      \begin{itemize}
-			      \item Why? because I designed the template with it in mind. The columns env probably works for the most part as well, but it might not.
+			      \item Why? because I designed the template with it in mind. \texttt{minipages} works well in most cases, but \texttt{columns} more beamer-native.
 		      \end{itemize}
 		\item I tried to use relative values for margins and header/sizes where I could. It should scale well with different page sizes.
 		\item Just use \texttt{\\ref} for references. it's pretty annoying to get cleveref to work with beamer~\cite{cleveref_beamer}, and it doesn't look like there will be a nice way any time soon~\cite{}
@@ -214,6 +216,7 @@
 \begin{frame}
 	\frametitle{Using figures}
 	Here is an example of a figure.
+	\vfill
 	\begin{figure}
 		\centering
 		\begin{minipage}{.5\textwidth}
@@ -250,65 +253,69 @@
 \begin{frame}
 	\frametitle{A Table}
 	\centering
-	\begin{minipage}{0.3\linewidth}
-		\begin{table}
-			\centering
-			{\small
-				\begin{tabular}[c]{lll}
-					\toprule
-					\textbf{Col 1} & \textbf{Col 2} & \textbf{Col 3} \\ \midrule
-					a              & b              & c              \\
-					d              & e              & f              \\
-					\bottomrule
-				\end{tabular}
-			}
-			\caption{An example table}
-			\label{tab:}
-		\end{table}
-	\end{minipage}
-	\begin{minipage}{0.6\linewidth}
-		\textbf{Findings}\par
-		\begin{itemize}
-			\item This is indeed a table.
-			\item Use minipage to put two things side by side, just like the images.
-			\item You can also use columns, but it's not necessary~\cite{scharrerAnswerMinipageColumns2011}.
-		\end{itemize}
-	\end{minipage}
+
+	\begin{columns}[T]
+		\begin{column}{0.3\textwidth}
+			\begin{table}
+				\centering
+				{\small
+					\begin{tabular}[c]{lll}
+						\toprule
+						\textbf{Col 1} & \textbf{Col 2} & \textbf{Col 3} \\ \midrule
+						a              & b              & c              \\
+						d              & e              & f              \\
+						\bottomrule
+					\end{tabular}
+				}
+				\caption{An example table}
+				\label{tab:}
+			\end{table}
+		\end{column}
+		\begin{column}{0.7\textwidth}
+			\textbf{Findings}\par
+			\begin{itemize}
+				\item This is indeed a table.
+				\item Use minipage to put two things side by side, just like the images.
+				\item You can also use columns, but it's not necessary~\cite{scharrerAnswerMinipageColumns2011}.
+			\end{itemize}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \subsection{Textboxes}
-\begin{frame}
-	\frametitle{Textboxes}
+\begin{frame}{Textboxes}
 	\centering
-	\begin{minipage}{0.3\linewidth}
-		\begin{primaryblock}[equal height group=A,label=block:first]{First Block}
-			% I'm also going to set the indent for them so they play nicely with the textboxes
-			\setlength{\leftmargini}{8pt}
-			\begin{itemize}
-				\item First item of first block.
-				\item Second item of first block.
-				\item Notice that the next block matches the height of this one.
-				\item I am also changing the indentation of bullets so it looks better in the boxes.
-			\end{itemize}
-		\end{primaryblock}
-	\end{minipage}
-	\begin{minipage}{0.3\linewidth}
-		\begin{secondaryblock}[equal height group=A]{Second Block}
-			\setlength{\leftmargini}{8pt}
-			\begin{itemize}
-				\item First item of second block.
-				      \begin{itemize}
-					      \item first sub item of second block.
-				      \end{itemize}
-			\end{itemize}
-		\end{secondaryblock}
-	\end{minipage}
-	\begin{minipage}{0.3\linewidth}
-		\begin{primaryblock}[]{Third Block}
-			% \item First point of second block.
-			This one doesn't have a list and doesn't match the height!
-		\end{primaryblock}
-	\end{minipage}
+	\begin{columns}[T]
+		\begin{column}{0.3\textwidth}
+			\begin{primaryblock}[equal height group=A,label=block:first]{First Block}
+				% I'm also going to set the indent for them so they play nicely with the textboxes
+				\setlength{\leftmargini}{8pt}
+				\begin{itemize}
+					\item First item of first block.
+					\item Second item of first block.
+					\item Notice that the next block matches the height of this one.
+					\item I am also changing the indentation of bullets so it looks better in the boxes.
+				\end{itemize}
+			\end{primaryblock}
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\begin{secondaryblock}[equal height group=A]{Second Block}
+				\setlength{\leftmargini}{8pt}
+				\begin{itemize}
+					\item First item of second block.
+					      \begin{itemize}
+						      \item first sub item of second block.
+					      \end{itemize}
+				\end{itemize}
+			\end{secondaryblock}
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\begin{primaryblock}[]{Third Block}
+				% \item First point of second block.
+				This one doesn't have a list and doesn't match the height!
+			\end{primaryblock}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \section{Equation/Theorem/Definition/Algorithms}
@@ -336,7 +343,6 @@
 	\end{definition}
 \end{frame}
 
-
 \section{Using Bibtex}
 \begin{frame}
 	\frametitle{Using Bibtex}
@@ -355,21 +361,20 @@
 	\bfcite{fiandrinoAnswerDesignCustom2013}
 \end{frame}
 
-
 \section{Advanced Controls}
 \subsection{Footer Title Option/Override}
 \begin{frame}
 	\frametitle{Footer Title Option/Override}
-  \footertitleoverride{A New Footer title}
+	\footertitleoverride{A New Footer title}
 	\begin{itemize}
-    \item The default behavior is to use the shorttitle (the stuff defined in \texttt{[]} after \texttt{\textbackslash title})
-    \item You can change this by specifying an option when importing the template (like \texttt{\textbackslash usetheme[<OPTION\_HERE>]\{rpi\}}). Valid options are:
-      \begin{itemize}
-        \item \texttt{footertitlemode=onlysection}
-        \item \texttt{footertitlemode=sectionandsubsection}
-        \item \texttt{footertitlemode=onlysubsection}
-      \end{itemize}
-    \item OR you can override it by using \texttt{\textbackslash overridefootertitle\{<YOUR\_TITLE\_HERE>\}}. This will override the title for the rest of the presentation, until you call \texttt{\textbackslash clearoverridefootertitle}.
+		\item The default behavior is to use the shorttitle (the stuff defined in \texttt{[]} after \texttt{\textbackslash title})
+		\item You can change this by specifying an option when importing the template (like \texttt{\textbackslash usetheme[<OPTION\_HERE>]\{rpi\}}). Valid options are:
+		      \begin{itemize}
+			      \item \texttt{footertitlemode=onlysection}
+			      \item \texttt{footertitlemode=sectionandsubsection}
+			      \item \texttt{footertitlemode=onlysubsection}
+		      \end{itemize}
+		\item OR you can override it by using \texttt{\textbackslash overridefootertitle\{<YOUR\_TITLE\_HERE>\}}. This will override the title for the rest of the presentation, until you call \texttt{\textbackslash clearoverridefootertitle}.
 	\end{itemize}
 \end{frame}
 
