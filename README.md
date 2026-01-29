@@ -36,7 +36,7 @@ Please feel free to suggest any changes (even better) implement your own.
 
 **Overleaf**
 
-- Start by cloning [this project](https://www.overleaf.com/read/yshxrvnkbdjz#48311c). (we can't upload unofficial templates to overleaf anymore).
+- Start by cloning [this project](https://www.overleaf.com/read/brkcsgkgtxmb#9ae8e7). (we can't upload unofficial templates to overleaf anymore).
 - double check the compiler checking this option in the menu:
   ![](./figures/overleaf-compiler.png)
   ![](./figures/overleaf-menu.png)
