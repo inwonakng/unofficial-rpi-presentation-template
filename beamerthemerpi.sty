@@ -70,7 +70,7 @@
 
 % Requirement
 \RequirePackage{tikz}
-\RequirePackage{transparent}
+\usetikzlibrary{calc}
 
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{changepage}
@@ -82,6 +82,7 @@
 \setbeamertemplate{navigation symbols}{}
 
 \setbeamertemplate{blocks}[rounded][shadow=false]
+% \setbeamertemplate{blocks}[default]
 % turn off shadow -- overleaf has issues with shadows in tcolorbox
 
 % font
@@ -281,10 +282,10 @@
 	enhanced,
 	breakable,
 	% boxsep=1pt,
-	left=4pt,
-	right=4pt,
-	top=4pt,
-	bottom=4pt,
+	left=2pt,
+	right=2pt,
+	top=2pt,
+	bottom=2pt,
 	fonttitle=\bfseries,
 	colback=white,
 	colbacktitle=RPIred,
@@ -296,10 +297,10 @@
 	enhanced,
 	breakable,
 	% boxsep=1pt,
-	left=4pt,
-	right=4pt,
-	top=4pt,
-	bottom=4pt,
+	left=2pt,
+	right=2pt,
+	top=2pt,
+	bottom=2pt,
 	fonttitle=\bfseries,
 	colback=white,
 	colbacktitle=RPIdarkgray,
