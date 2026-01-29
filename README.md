@@ -24,7 +24,7 @@ Please feel free to suggest any changes (even better) implement your own.
 2. Set xelatex or lualatex as the default compiler for latexmk.
    - I use the following `.latexmkrc` file to change the compiler to `xelatex` (latexmk to compile my documents locally.). You can also keep one in `~/.latexmkrc` to make it global (local will override global).
    - The logos are also from the website, but I converted them to PDF for convenience (there's probably ways to use SVG in latex, but I don't want to deal with that).
-   - The bar is *not* directly from the brand website. I had to rip it out of the pptx template file because the SVG they provide is too short and it is not nicely designed to extend.
+   - The bar is _not_ directly from the brand website. I had to rip it out of the pptx template file because the SVG they provide is too short and it is not nicely designed to extend.
 
    ```latexmkrc
    # $pdf_mode = 4; # sets lualatex to default engine.
@@ -39,5 +39,8 @@ Please feel free to suggest any changes (even better) implement your own.
 - Start by cloning [this project](https://www.overleaf.com/read/yshxrvnkbdjz#48311c). (we can't upload unofficial templates to overleaf anymore).
 - double check the compiler checking this option in the menu:
   ![](./figures/overleaf-compiler.png)
-  ![](./figures/overleaf-menu.png).
+  ![](./figures/overleaf-menu.png)
   - if not already selected, select either `LuaLaTeX` or `XeLaTeX` as the compiler.
+
+- This is what the new screen looks like (the setting button is on the bottom left corner).
+  ![](./figures/overleaf-compiler-new.png)
