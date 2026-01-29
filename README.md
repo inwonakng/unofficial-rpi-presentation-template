@@ -36,11 +36,11 @@ Please feel free to suggest any changes (even better) implement your own.
 
 **Overleaf**
 
-- Start by cloning [this project](https://www.overleaf.com/read/brkcsgkgtxmb#9ae8e7). (we can't upload unofficial templates to overleaf anymore).
+- Start by cloning [this project](https://www.overleaf.com/read/tfmtktkymgrj#41a6a0). (we can't upload unofficial templates to overleaf anymore).
 - double check the compiler checking this option in the menu:
   ![](./figures/overleaf-compiler.png)
   ![](./figures/overleaf-menu.png)
   - if not already selected, select either `LuaLaTeX` or `XeLaTeX` as the compiler.
 
-- This is what the new screen looks like (the setting button is on the bottom left corner).
+- This is what the new screen looks like (the setting button is on the bottom left corner), and you can get to the compiler menu (second from top on left side)
   ![](./figures/overleaf-compiler-new.png)
