@@ -71,7 +71,6 @@
 % Requirement
 \RequirePackage{tikz}
 \RequirePackage{transparent}
-\usetikzlibrary{calc}
 
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{changepage}
@@ -82,7 +81,8 @@
 % NOTE: uncomment if you want the navigations
 \setbeamertemplate{navigation symbols}{}
 
-\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{blocks}[rounded][shadow=false]
+% turn off shadow -- overleaf has issues with shadows in tcolorbox
 
 % font
 \RequirePackage{fontspec}
