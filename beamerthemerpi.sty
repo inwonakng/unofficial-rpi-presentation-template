@@ -276,7 +276,7 @@
 \setbeamertemplate{subsection in toc}{\leavevmode\leftskip=1em$\bullet$\hskip1em\inserttocsubsection\par}
 
 %----------------------------------------------------------------------------------------
-% Textblock
+% Textblocks
 %----------------------------------------------------------------------------------------
 \newtcolorbox[auto counter]{primaryblock}[2][]{
 	enhanced,
@@ -306,6 +306,22 @@
 	colbacktitle=RPIdarkgray,
 	colframe=RPIdarkgray,
 	% title=Example~\thetcbcounter: #2,
+	title=#2,
+	#1,
+}
+% this one is intended to replace stuff like definition blocks.
+\newtcolorbox[auto counter]{specialblock}[2][]{
+	enhanced,
+	breakable,
+	% boxsep=1pt,
+	left=2pt,
+	right=2pt,
+	top=2pt,
+	bottom=2pt,
+	fonttitle=\bfseries,
+	colback=RPIlightred!10,
+	colbacktitle=RPIred,
+	colframe=RPIred,
 	title=#2,
 	#1,
 }
