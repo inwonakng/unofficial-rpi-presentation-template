@@ -173,7 +173,7 @@
 		% the new pattern thing on the right side. need to rotate as well.
 		\node[anchor=north east]
 		at ($(current page.north east) + (0.008\paperwidth,0.014\paperheight)$)
-    {\includegraphics[height=\paperheight]{./logos/RPI_bar_from_ppt.pdf}};
+		{\includegraphics[height=\paperheight]{./logos/RPI_bar_from_ppt.pdf}};
 
 		% title text
 		\node[
@@ -194,8 +194,9 @@
 		\node[text width=0.95\paperwidth, align=left]
 		at ($(current page.south) + (0.05\paperwidth, 0.4\paperheight)$)
 		{
-			\usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor%
-			~--~\usebeamercolor[fg]{author}\usebeamerfont{author}\insertinstitute%
+			\usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\par
+			\vspace{0.25em}
+			\usebeamercolor[fg]{institute}\usebeamerfont{institute}\insertinstitute%
 		};
 
 		% RPI Logo on the bottom right
