@@ -6,12 +6,12 @@ Please feel free to suggest any changes (even better) implement your own.
 [Preview the full template here](./main.pdf)
 
 <p align="center">
-  <img src="./figures/slides/slide-01.png" alt="Slide 1" width="49%" />
-  <img src="./figures/slides/slide-07.png" alt="Slide 2" width="49%" />
-  <img src="./figures/slides/slide-09.png" alt="Slide 3" width="49%" />
-  <img src="./figures/slides/slide-18.png" alt="Slide 4" width="49%" />
-  <img src="./figures/slides/slide-25.png" alt="Slide 5" width="49%" />
-  <img src="./figures/slides/slide-32.png" alt="Slide 6" width="49%" />
+  <img src="./assets/slide-01.png" alt="Slide 1" width="49%" />
+  <img src="./assets/slide-07.png" alt="Slide 2" width="49%" />
+  <img src="./assets/slide-09.png" alt="Slide 3" width="49%" />
+  <img src="./assets/slide-18.png" alt="Slide 4" width="49%" />
+  <img src="./assets/slide-25.png" alt="Slide 5" width="49%" />
+  <img src="./assets/slide-32.png" alt="Slide 6" width="49%" />
 </p>
 
 ---

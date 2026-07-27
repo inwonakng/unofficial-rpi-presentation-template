@@ -2,7 +2,7 @@
 set -euo pipefail
 
 pdf="${1:-main.pdf}"
-out_dir="${2:-figures/slides}"
+out_dir="${2:-assets}"
 density="${DENSITY:-144}"
 
 mkdir -p "$out_dir"
