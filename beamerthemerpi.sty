@@ -86,8 +86,31 @@
 % turn off shadow -- overleaf has issues with shadows in tcolorbox
 
 % font
+
 \RequirePackage{fontspec}
 \RequirePackage{unicode-math}
+
+\newfontfamily\RPIGeist[
+  Path=./fonts/,
+  Extension=.otf,
+  UprightFont=*-Regular,
+  ItalicFont=*-RegularItalic,
+  BoldFont=*-Bold,
+  BoldItalicFont=*-BoldItalic,
+  Ligatures=TeX
+]{RPIGeist}
+
+\newfontfamily\RPIGeistMono[
+  Path=./fonts/,
+  Extension=.otf,
+  UprightFont=*-Regular,
+  ItalicFont=*-Italic,
+  BoldFont=*-Bold,
+  BoldItalicFont=*-BoldItalic,
+  Ligatures=TeX
+]{RPIGeistMono}
+
+\usefonttheme{professionalfonts}
 
 \setsansfont{RPIGeist}[
 	Path=./fonts/,
@@ -106,8 +129,6 @@
 	BoldItalicFont=*-BoldItalic
 ]
 
-\usefonttheme{professionalfonts} % prevents Beamer from overriding font settings
-
 %----------------------------------------------------------------------------------------
 % Custom fonts
 %----------------------------------------------------------------------------------------
@@ -120,7 +141,7 @@
 \setbeamerfont{framesubtitle}{size=\normalsize,parent=structure}
 \setbeamerfont{framefooter}{size=\tiny,parent=structure}
 \setbeamerfont{framefootertitle}{size=\small,parent=structure}
-% \setbeamerfont{footnote}{size=\tiny,shape=\itshape}
+\setbeamerfont{heading}{family=\RPIGeistMono,series=\bfseries}
 \setbeamerfont{footnote}{size=\tiny}
 \setbeamerfont{subsection in toc}{size=\small}
 
@@ -151,7 +172,12 @@
 %----------------------------------------------------------------------------------------
 % Special Text
 %----------------------------------------------------------------------------------------
-\newcommand{\heading}[1]{{\color{darkergray}\textbf{#1}}}
+
+% Heading
+\newcommand\heading[1]
+{%
+  {\usebeamerfont{heading}\usebeamercolor[fg]{heading}\MakeUppercase{#1}}\par\smallskip
+}
 
 %----------------------------------------------------------------------------------------
 % Page margins
