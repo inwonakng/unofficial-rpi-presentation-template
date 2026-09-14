@@ -76,7 +76,7 @@
 \RequirePackage{changepage}
 \RequirePackage{listings}
 
-\RequirePackage[style=ieee,backend=bibtex,citetracker=true,maxcitenames=2,mincitenames=1]{biblatex}
+\RequirePackage[style=ieee,backend=biber,natbib=true,maxcitenames=2,mincitenames=1]{biblatex}
 
 % NOTE: uncomment if you want the navigations
 \setbeamertemplate{navigation symbols}{}
@@ -366,11 +366,10 @@
 
 
 %----------------------------------------------------------------------------------------
-% Inline Citation
-% https://tex.stackexchange.com/a/396754/28146
+% Frame-wide citation footnotes
 %----------------------------------------------------------------------------------------
 
-% Clear URLDate (Last visited ...)
+% Omit access dates from the bibliography.
 \AtEveryBibitem{%
 	\clearfield{urldate}%
 	\clearfield{urlyear}%
@@ -378,61 +377,14 @@
 	\clearfield{urlday}%
 }
 
-\AtEveryCitekey{%
+% Print an unmarked full citation at the bottom of the current frame. Call this
+% in frame scope, after any columns or minipages, so the note spans the frame.
+\newbibmacro*{framefootcite}{%
 	\clearfield{urldate}%
 	\clearfield{urlyear}%
 	\clearfield{urlmonth}%
 	\clearfield{urlday}%
 	\clearfield{pages}%
-}
-
-% A shorter version of \fullcite that doesn't include stuff like urldate
-\newbibmacro*{shortcite}{%
-	% \DeclareFieldFormat{date}{\mkbibparens{##1}}%
-	\textcolor{RPIred}{%
-		\printnames{labelname}%
-	}%
-	\setunit{\addcomma\space``}%
-	\printfield{labeltitle}%
-	% \setunit{''\addcomma\space}%
-	\setunit{''\addcomma\space}%
-	\textcolor{RPIlightred}{%
-		\printdate%
-		\setunit{\addcomma\space}%
-		\ifentrytype{misc}{%
-			% if it is misc type
-			\iffieldundef{eprint}{
-				% if it doesn't have eprint 
-				\iffieldundef{journaltitle}{}{%
-					\printfield{journaltitle}%
-				}%
-			}{
-				% if it does have eprint field (mostly for arxiv)
-				\printfield{eprint}%
-			}
-		}{}%
-		\ifentrytype{article}{%
-			% if it is article type
-			\iffieldundef{journaltitle}{}{
-				\printfield{journaltitle}%
-			}%
-		}{}%
-		\ifentrytype{inproceedings}{%
-			% if it is inproceedings type
-			\printfield{booktitle}%
-		}{}%
-	}%
-	\addperiod%
-}
-
-\DeclareCiteCommand{\shortcite}%
-{}
-{\usebibmacro{shortcite}}
-{}
-{}
-
-% creates a blank citation that adds to the footnote
-\newbibmacro*{blankfootcite}{%
 	\renewcommand{\@makefntext}[1]{\noindent\normalfont##1}%
 	\footnotetext{%
 		\tiny
@@ -441,23 +393,16 @@
 			\printfield{labelnumber}%
 		}%
 		\addspace
-		% \shortcite{\thefield{entrykey}}%
-		\fullcite{\thefield{entrykey}}%
+		\usedriver
+			{\DeclareNameAlias{sortname}{default}}
+			{\thefield{entrytype}}%
 	}%
 }
 
-\DeclareCiteCommand{\blankfootcite}%
+\DeclareCiteCommand{\bfcite}%
 {}
-{\usebibmacro{blankfootcite}}
+{\usebibmacro{framefootcite}}
 {}
 {}
-
-% Footcite 
-\newcommand{\fcite}[1]{\cite{#1}\blankfootcite{#1}}
-\newcommand{\tfcite}[1]{\textcite{#1}\blankfootcite{#1}}
-\newcommand{\bfcite}[1]{\blankfootcite{#1}}
-
-% Shorthands for citing
-\newcommand{\tcite}[1]{\textcite{#1}}
 
 \mode<all>

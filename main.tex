@@ -178,7 +178,7 @@
 			      \item Why? because I designed the template with it in mind. \texttt{minipages} works well in most cases, but \texttt{columns} more beamer-native.
 		      \end{itemize}
 		\item I tried to use relative values for margins and header/sizes where I could. It should scale well with different page sizes.
-		\item Just use \texttt{\\ref} for references. it's pretty annoying to get cleveref to work with beamer~\cite{cleveref_beamer}, and it doesn't look like there will be a nice way any time soon~\cite{}
+		\item Just use \texttt{\\ref} for references. it's pretty annoying to get cleveref to work with beamer~\cite{cleveref_beamer}, and it doesn't look like there will be a nice way any time soon.
 	\end{itemize}
 \end{frame}
 
@@ -344,19 +344,18 @@
 	\end{specialblock}
 \end{frame}
 
-\section{Using Bibtex}
+\section{Using BibLaTeX}
 \begin{frame}
-	\frametitle{Using Bibtex}
+	\frametitle{Using BibLaTeX}
 	\begin{itemize}
-		\item It should be the same as using your regular bibtex.
-		\item To showcase, let's cite some resources~\cite{anglimAnswerImageFull2010,fiandrinoAnswerDesignCustom2013,kormyloAnswerMakeTikz2017} that helped me put this together.
-		\item You can add \texttt{[allowframebreaks]} to the frame to automatically continue the reference list in the text page if you have too many.
-		\item You can use \texttt{\textbackslash tcite} (short for textcite) shorthand to use it in \textit{text} mode, i.e. \tcite{anglimAnswerImageFull2010}.
-		\item You can use \texttt{\textbackslash fcite} (short for footcite) to add a citation with a footnote on the bottom of the slide.
+		\item Add a bibliography with \texttt{\textbackslash addbibresource} and render it with \texttt{\textbackslash printbibliography}.
+		\item Use \texttt{\textbackslash citep} for parenthetical citations, such as these resources~\citep{anglimAnswerImageFull2010,fiandrinoAnswerDesignCustom2013,kormyloAnswerMakeTikz2017}.
+		\item Use \texttt{\textbackslash citet} when the authors are part of the sentence, as in \citet{anglimAnswerImageFull2010}.
+		\item Add \texttt{[allowframebreaks]} to the references frame when the bibliography needs multiple slides.
+		\item Use \texttt{\textbackslash bfcite} (mnemonic: blank footcite) to print a full citation at the bottom of the frame without a footnote superscript.
 		      \begin{itemize}
-			      \item Note that if you are using \texttt{\textbackslash columns} or \texttt{\textbackslash minipage}, the footnote will by default appear in the bottom of the \textit{environment}, not the slide.
-			      \item You can manually escape this by using just \texttt{\textbackslash cite} or \texttt{\textbackslash tcite} in text and adding a \texttt{\textbackslash bfcite} (blank footcite) outside of these environments.
-			      \item e.g. \texttt{\textbackslash bfcite\{fiandrinoAnswerDesignCustom2013\}}.
+			      \item Inside a column or minipage, cite with \texttt{\textbackslash citep} or \texttt{\textbackslash citet}.
+			      \item Place the matching \texttt{\textbackslash bfcite} after the columns or minipage so the citation spans the full frame.
 		      \end{itemize}
 	\end{itemize}
 	\bfcite{fiandrinoAnswerDesignCustom2013}
